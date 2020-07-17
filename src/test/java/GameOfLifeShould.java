@@ -78,4 +78,19 @@ public class GameOfLifeShould {
                 {0, 1, 0, 0},
                 {0, 0, 0, 0}});
     }
+
+    @Test
+    public void killCellsDueToOverpopulation() {
+        GameOfLife gameOfLife = new GameOfLife(new int[][]{
+                {0, 1, 0, 0},
+                {0, 1, 1, 0},
+                {0, 1, 1, 0},
+                {0, 0, 0, 0}});
+        gameOfLife.tick();
+        gameOfLife.assertState(new int[][]{
+                {0, 1, 0, 0},
+                {0, 0, 0, 0},
+                {0, 1, 1, 0},
+                {0, 0, 0, 0}});
+    }
 }

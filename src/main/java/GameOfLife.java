@@ -17,6 +17,9 @@ public class GameOfLife {
                     if (livingNeighbours < 2) {
                         cells[row][column] = 0;
                     }
+                    if (livingNeighbours > 3) {
+                        cells[row][column] = 0;
+                    }
 
                 }
             }
