@@ -11,7 +11,7 @@ public class GameOfLife {
     private final int[][] cells;
 
     public GameOfLife(int cells[][]) {
-        this.cells = getCopyOf(cells);
+        this.cells = createCopyOf(cells);
     }
 
     private int getRows() {
@@ -24,7 +24,7 @@ public class GameOfLife {
 
     public void tick() {
 
-        int[][] copy = getCopyOf(cells);
+        int[][] copy = createCopyOf(cells);
 
         for (int row = 0; row < getRows(); row++) {
             for (int column = 0; column < getColumns(); column++) {
@@ -48,7 +48,7 @@ public class GameOfLife {
         }
     }
 
-    private int[][] getCopyOf(int[][] cells) {
+    private int[][] createCopyOf(int[][] cells) {
         return Arrays.stream(cells).map(int[]::clone).toArray(int[][]::new);
     }
 
