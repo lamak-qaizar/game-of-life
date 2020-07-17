@@ -25,4 +25,19 @@ public class GameOfLifeShould {
         gameOfLife.tick();
         assertEquals(gameOfLife.hasLife(), false);
     }
+
+    @Test
+    public void remainTheSameIfEachCellHas2LivingNeighbours() {
+        GameOfLife gameOfLife = new GameOfLife(new int[][]{
+                {0, 0, 0, 0},
+                {0, 1, 1, 0},
+                {0, 1, 0, 0},
+                {0, 0, 0, 0}});
+        gameOfLife.tick();
+        gameOfLife.assertState(new int[][]{
+                {0, 0, 0, 0},
+                {0, 1, 1, 0},
+                {0, 1, 0, 0},
+                {0, 0, 0, 0}});
+    }
 }

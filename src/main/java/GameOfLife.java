@@ -10,4 +10,8 @@ public class GameOfLife {
     public boolean hasLife() {
         return false;
     }
+
+    public void assertState(int[][] cells) {
+
+    }
 }
