@@ -8,12 +8,20 @@ public class GameOfLife {
         this.cells = cells;
     }
 
+    private int getRows() {
+        return this.cells.length;
+    }
+
+    private int getColumns() {
+        return this.cells[0].length;
+    }
+
     public void tick() {
 
         int[][] copy = getCopyOf(cells);
 
-        for (int row = 0; row < cells.length; row++) {
-            for (int column = 0; column < cells[row].length; column++) {
+        for (int row = 0; row < getRows(); row++) {
+            for (int column = 0; column < getColumns(); column++) {
                 if (copy[row][column] == 1) {
                     int livingNeighbours = getNumberOfLivingNeighboursFor(copy, row, column);
                     checkForUnderpopulation(this.cells, row, column, livingNeighbours);
