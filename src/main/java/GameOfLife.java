@@ -8,20 +8,19 @@ public class GameOfLife {
     public static final int NUMBER_OF_NEIGHBOURS_TO_KILL_DUE_TO_UNDERPOPULATION = 2;
     public static final int NUMBER_OF_NEIGHBOURS_TO_KILL_DUE_TO_OVERPOPULATION = 3;
 
-    private final Cells cellsObj;
+    private final Cells cells;
 
     public GameOfLife(int cells[][]) {
-        cellsObj = new Cells(createCopyOf(cells));
+        this.cells = new Cells(createCopyOf(cells));
     }
 
     public void tick() {
 
-        int[][] copy = createCopyOf(getCells());
-        Cells copyOfCells = this.cellsObj.copy();
+        Cells copyOfCells = this.cells.copy();
 
-        for (int row = 0; row < cellsObj.getRows(); row++) {
-            for (int column = 0; column < cellsObj.getColumns(); column++) {
-                int livingNeighbours = getNumberOfLivingNeighboursFor(copy, row, column);
+        for (int row = 0; row < cells.getRows(); row++) {
+            for (int column = 0; column < cells.getColumns(); column++) {
+                int livingNeighbours = copyOfCells.countNeighboursMatching(row, column, LIVING_CELL);
                 livingCellChecks(copyOfCells, row, column, livingNeighbours);
                 deadCellChecks(copyOfCells, row, column, livingNeighbours);
             }
@@ -54,7 +53,7 @@ public class GameOfLife {
 
     private void reviveCell(int row, int column) {
         this.getCells()[row][column] = LIVING_CELL;
-        this.cellsObj.reviveCell(row, column);
+        this.cells.reviveCell(row, column);
     }
 
     private void checkForUnderpopulation(int row, int column,
@@ -73,7 +72,7 @@ public class GameOfLife {
 
     private void killCell(int row, int column) {
         this.getCells()[row][column] = DEAD_CELL;
-        this.cellsObj.killCell(row, column);
+        this.cells.killCell(row, column);
     }
 
     private int getNumberOfLivingNeighboursFor(int[][] cells, int row, int column) {
@@ -98,8 +97,8 @@ public class GameOfLife {
     private boolean isWithinGrid(int row, int column, int i, int j) {
         return row + i >= 0
                 && column + j >= 0
-                && row + i < cellsObj.getRows()
-                && column + j < cellsObj.getColumns();
+                && row + i < cells.getRows()
+                && column + j < cells.getColumns();
     }
 
     public void assertState(int[][] cells) {
@@ -107,6 +106,6 @@ public class GameOfLife {
     }
 
     public int[][] getCells() {
-        return cellsObj.getCells();
+        return cells.getCells();
     }
 }
