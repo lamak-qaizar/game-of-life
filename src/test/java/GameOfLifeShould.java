@@ -1,5 +1,6 @@
 import static org.junit.Assert.assertEquals;
 
+import java.util.Arrays;
 import org.junit.Test;
 
 public class GameOfLifeShould {
@@ -107,5 +108,22 @@ public class GameOfLifeShould {
                 {0, 0, 1, 0},
                 {0, 0, 0, 0},
                 {0, 0, 0, 0}});
+    }
+
+    @Test
+    public void notMutateInput() {
+        int[][] cellsActual = {
+                {0, 1, 0, 1},
+                {0, 0, 1, 0},
+                {0, 0, 0, 0},
+                {0, 0, 0, 0}};
+        GameOfLife gameOfLife = new GameOfLife(cellsActual);
+        gameOfLife.tick();
+        int[][] cellsExpected = {
+                {0, 1, 0, 1},
+                {0, 0, 1, 0},
+                {0, 0, 0, 0},
+                {0, 0, 0, 0}};
+        assert Arrays.deepEquals(cellsActual, cellsExpected);
     }
 }

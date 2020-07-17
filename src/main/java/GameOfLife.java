@@ -11,7 +11,7 @@ public class GameOfLife {
     private final int[][] cells;
 
     public GameOfLife(int cells[][]) {
-        this.cells = cells;
+        this.cells = getCopyOf(cells);
     }
 
     private int getRows() {
