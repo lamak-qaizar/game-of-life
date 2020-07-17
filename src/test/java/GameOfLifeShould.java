@@ -6,7 +6,11 @@ public class GameOfLifeShould {
 
     @Test
     public void remainLifelessWithEmptyBoard() {
-        GameOfLife gameOfLife = new GameOfLife(4, 4);
+        GameOfLife gameOfLife = new GameOfLife(new int[][]{
+                {0, 0, 0, 0},
+                {0, 0, 0, 0},
+                {0, 0, 0, 0},
+                {0, 0, 0, 0}});
         gameOfLife.tick();
         assertEquals(gameOfLife.hasLife(), false);
     }
