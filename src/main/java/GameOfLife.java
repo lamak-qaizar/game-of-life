@@ -37,13 +37,13 @@ public class GameOfLife {
 
     private void deadCellChecks(int cell, int row, int column, int livingNeighbours) {
         if (cell == DEAD_CELL) {
-            checkForBringingBackToLife(this.cells, row, column, livingNeighbours);
+            checkForBringingBackToLife(row, column, livingNeighbours);
         }
     }
 
     private void livingCellChecks(int cell, int row, int column, int livingNeighbours) {
         if (cell == LIVING_CELL) {
-            checkForUnderpopulation(this.cells, row, column, livingNeighbours);
+            checkForUnderpopulation(row, column, livingNeighbours);
             checkForOverpopulation(this.cells, row, column, livingNeighbours);
         }
     }
@@ -52,7 +52,7 @@ public class GameOfLife {
         return Arrays.stream(cells).map(int[]::clone).toArray(int[][]::new);
     }
 
-    private void checkForBringingBackToLife(int[][] cells, int row, int column,
+    private void checkForBringingBackToLife(int row, int column,
             int livingNeighbours) {
         if (livingNeighbours == NUMBER_OF_NEIGHBOURS_TO_BRING_BACK_TO_LIFE) {
             reviveCell(row, column);
@@ -63,7 +63,7 @@ public class GameOfLife {
         this.cells[row][column] = LIVING_CELL;
     }
 
-    private void checkForUnderpopulation(int[][] cells, int row, int column,
+    private void checkForUnderpopulation(int row, int column,
             int livingNeighbours) {
         if (livingNeighbours < NUMBER_OF_NEIGHBOURS_TO_KILL_DUE_TO_UNDERPOPULATION) {
             killCell(row, column);
