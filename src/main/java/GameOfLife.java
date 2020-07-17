@@ -8,12 +8,10 @@ public class GameOfLife {
     public static final int NUMBER_OF_NEIGHBOURS_TO_KILL_DUE_TO_UNDERPOPULATION = 2;
     public static final int NUMBER_OF_NEIGHBOURS_TO_KILL_DUE_TO_OVERPOPULATION = 3;
 
-    private final int[][] cells;
     private final Cells cellsObj;
 
     public GameOfLife(int cells[][]) {
-        this.cells = createCopyOf(cells);
-        cellsObj = new Cells(cells);
+        cellsObj = new Cells(createCopyOf(cells));
     }
 
     public void tick() {
@@ -55,6 +53,7 @@ public class GameOfLife {
 
     private void reviveCell(int row, int column) {
         this.getCells()[row][column] = LIVING_CELL;
+        this.cellsObj.reviveCell(row, column);
     }
 
     private void checkForUnderpopulation(int row, int column,
@@ -73,6 +72,7 @@ public class GameOfLife {
 
     private void killCell(int row, int column) {
         this.getCells()[row][column] = DEAD_CELL;
+        this.cellsObj.killCell(row, column);
     }
 
     private int getNumberOfLivingNeighboursFor(int[][] cells, int row, int column) {
@@ -106,6 +106,6 @@ public class GameOfLife {
     }
 
     public int[][] getCells() {
-        return cells;
+        return cellsObj.getCells();
     }
 }

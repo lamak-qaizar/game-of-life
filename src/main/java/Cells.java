@@ -18,4 +18,12 @@ public class Cells {
     public int getColumns() {
         return this.getCells()[0].length;
     }
+
+    public void killCell(int row, int column) {
+        this.getCells()[row][column] = GameOfLife.DEAD_CELL;
+    }
+
+    public void reviveCell(int row, int column) {
+        this.getCells()[row][column] = GameOfLife.LIVING_CELL;
+    }
 }
