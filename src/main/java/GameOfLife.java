@@ -17,24 +17,25 @@ public class GameOfLife {
     public void tick() {
 
         int[][] copy = createCopyOf(getCells());
+        Cells copyOfCells = this.cellsObj.copy();
 
         for (int row = 0; row < cellsObj.getRows(); row++) {
             for (int column = 0; column < cellsObj.getColumns(); column++) {
                 int livingNeighbours = getNumberOfLivingNeighboursFor(copy, row, column);
-                livingCellChecks(copy[row][column], row, column, livingNeighbours);
-                deadCellChecks(copy[row][column], row, column, livingNeighbours);
+                livingCellChecks(copyOfCells, row, column, livingNeighbours);
+                deadCellChecks(copyOfCells, row, column, livingNeighbours);
             }
         }
     }
 
-    private void deadCellChecks(int cell, int row, int column, int livingNeighbours) {
-        if (cell == DEAD_CELL) {
+    private void deadCellChecks(Cells cells, int row, int column, int livingNeighbours) {
+        if (cells.at(row, column, DEAD_CELL)) {
             checkForBringingBackToLife(row, column, livingNeighbours);
         }
     }
 
-    private void livingCellChecks(int cell, int row, int column, int livingNeighbours) {
-        if (cell == LIVING_CELL) {
+    private void livingCellChecks(Cells cells, int row, int column, int livingNeighbours) {
+        if (cells.at(row, column, LIVING_CELL)) {
             checkForUnderpopulation(row, column, livingNeighbours);
             checkForOverpopulation(this.getCells(), row, column, livingNeighbours);
         }
