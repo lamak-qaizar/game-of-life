@@ -6,7 +6,7 @@ public class Cells {
 
 
     public Cells(int[][] cells) {
-        this.cells = cells;
+        this.cells = createCopyOf(cells);
     }
 
     public Cells copy() {
