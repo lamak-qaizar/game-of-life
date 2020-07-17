@@ -12,7 +12,11 @@ public class GameOfLifeShould {
                 {0, 0, 0, 0},
                 {0, 0, 0, 0}});
         gameOfLife.tick();
-        assertEquals(gameOfLife.hasLife(), false);
+        gameOfLife.assertState(new int[][]{
+                {0, 0, 0, 0},
+                {0, 0, 0, 0},
+                {0, 0, 0, 0},
+                {0, 0, 0, 0}});
     }
 
     @Test
@@ -23,7 +27,11 @@ public class GameOfLifeShould {
                 {0, 0, 0, 0},
                 {0, 0, 0, 0}});
         gameOfLife.tick();
-        assertEquals(gameOfLife.hasLife(), false);
+        gameOfLife.assertState(new int[][]{
+                {0, 0, 0, 0},
+                {0, 0, 0, 0},
+                {0, 0, 0, 0},
+                {0, 0, 0, 0}});
     }
 
     @Test
