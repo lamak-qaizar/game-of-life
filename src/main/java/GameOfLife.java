@@ -40,10 +40,14 @@ public class GameOfLife {
     }
 
     private void checkForBringingBackToLife(Cells cellsAfterTick, int row, int column) {
-        if (cells.countNeighboursMatching(row, column, LIVING_CELL)
+        if (livingNeighboursAround(row, column)
                 == NUMBER_OF_NEIGHBOURS_TO_BRING_BACK_TO_LIFE) {
             bringCellToLife(cellsAfterTick, row, column);
         }
+    }
+
+    private int livingNeighboursAround(int row, int column) {
+        return cells.countNeighboursMatching(row, column, LIVING_CELL);
     }
 
     private void bringCellToLife(Cells cellsAfterTick, int row, int column) {
@@ -51,7 +55,7 @@ public class GameOfLife {
     }
 
     private void checkForUnderpopulation(Cells cellsAfterTick, int row, int column) {
-        if (cells.countNeighboursMatching(row, column, LIVING_CELL)
+        if (livingNeighboursAround(row, column)
                 < NUMBER_OF_NEIGHBOURS_TO_KILL_DUE_TO_UNDERPOPULATION) {
             killCell(cellsAfterTick, row, column);
         }
@@ -62,7 +66,7 @@ public class GameOfLife {
     }
 
     private void checkForOverpopulation(Cells cellsAfterTick, int row, int column) {
-        if (cells.countNeighboursMatching(row, column, LIVING_CELL)
+        if (livingNeighboursAround(row, column)
                 > NUMBER_OF_NEIGHBOURS_TO_KILL_DUE_TO_OVERPOPULATION) {
             killCell(cellsAfterTick, row, column);
         }
