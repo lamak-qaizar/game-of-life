@@ -37,7 +37,7 @@ public class GameOfLifeShould {
     @Test
     public void beLifelessDueToUnderpopulationAtTheEdgeOfGrid() {
         GameOfLife gameOfLife = new GameOfLife(new int[][]{
-                {0, 0, 0, 0},
+                {0, 0, 1, 0},
                 {1, 0, 0, 0},
                 {0, 0, 0, 0},
                 {0, 0, 0, 0}});
