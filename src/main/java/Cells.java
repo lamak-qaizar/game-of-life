@@ -17,20 +17,16 @@ public class Cells {
         return Arrays.stream(cells).map(int[]::clone).toArray(int[][]::new);
     }
 
-    public int[][] getCells() {
-        return cells;
-    }
-
     public int getRows() {
-        return this.getCells().length;
+        return cells.length;
     }
 
     public int getColumns() {
-        return this.getCells()[0].length;
+        return cells[0].length;
     }
 
     public void set(int row, int column, int value) {
-        this.getCells()[row][column] = value;
+        cells[row][column] = value;
     }
 
     public boolean at(int i, int j, int value) {
@@ -64,4 +60,8 @@ public class Cells {
                 && column + j < getColumns();
     }
 
+
+    public void assertState(int[][] cells) {
+        assert Arrays.deepEquals(this.cells, cells);
+    }
 }

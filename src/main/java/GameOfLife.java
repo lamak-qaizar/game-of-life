@@ -22,15 +22,14 @@ public class GameOfLife {
             for (int column = 0; column < cells.getColumns(); column++) {
                 int livingNeighbours = cells.countNeighboursMatching(row, column, LIVING_CELL);
                 livingCellChecks(cellsAfterTick, row, column, livingNeighbours);
-                deadCellChecks(cells, row, column, livingNeighbours, cellsAfterTick);
+                deadCellChecks(cellsAfterTick, row, column, livingNeighbours);
             }
         }
 
         this.cells = cellsAfterTick;
     }
 
-    private void deadCellChecks(Cells cells, int row, int column, int livingNeighbours,
-            Cells cellsAfterTick) {
+    private void deadCellChecks(Cells cellsAfterTick, int row, int column, int livingNeighbours) {
         if (cells.at(row, column, DEAD_CELL)) {
             checkForBringingBackToLife(cellsAfterTick, row, column, livingNeighbours);
         }
@@ -46,29 +45,33 @@ public class GameOfLife {
     private void checkForBringingBackToLife(Cells cellsAfterTick, int row, int column,
             int livingNeighbours) {
         if (livingNeighbours == NUMBER_OF_NEIGHBOURS_TO_BRING_BACK_TO_LIFE) {
-            cellsAfterTick.set(row, column, LIVING_CELL);
+            bringCellToLife(cellsAfterTick, row, column);
         }
+    }
+
+    private void bringCellToLife(Cells cellsAfterTick, int row, int column) {
+        cellsAfterTick.set(row, column, LIVING_CELL);
     }
 
     private void checkForUnderpopulation(Cells cellsAfterTick, int row, int column,
             int livingNeighbours) {
         if (livingNeighbours < NUMBER_OF_NEIGHBOURS_TO_KILL_DUE_TO_UNDERPOPULATION) {
-            cellsAfterTick.set(row, column, DEAD_CELL);
+            killCell(cellsAfterTick, row, column);
         }
+    }
+
+    private void killCell(Cells cellsAfterTick, int row, int column) {
+        cellsAfterTick.set(row, column, DEAD_CELL);
     }
 
     private void checkForOverpopulation(Cells cellsAfterTick, int row, int column,
             int livingNeighbours) {
         if (livingNeighbours > NUMBER_OF_NEIGHBOURS_TO_KILL_DUE_TO_OVERPOPULATION) {
-            cellsAfterTick.set(row, column, DEAD_CELL);
+            killCell(cellsAfterTick, row, column);
         }
     }
 
     public void assertState(int[][] cells) {
-        assert Arrays.deepEquals(this.getCells(), cells);
-    }
-
-    public int[][] getCells() {
-        return cells.getCells();
+        this.cells.assertState(cells);
     }
 }
