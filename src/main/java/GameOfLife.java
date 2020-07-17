@@ -14,15 +14,22 @@ public class GameOfLife {
             for (int column = 0; column < cells[row].length; column++) {
                 if (cells[row][column] == 1) {
                     int livingNeighbours = getNumberOfLivingNeighboursFor(row, column);
-                    if (livingNeighbours < 2) {
-                        cells[row][column] = 0;
-                    }
-                    if (livingNeighbours > 3) {
-                        cells[row][column] = 0;
-                    }
-
+                    checkForUnderpopulation(row, column, livingNeighbours);
+                    checkForOverpopulation(row, column, livingNeighbours);
                 }
             }
+        }
+    }
+
+    private void checkForUnderpopulation(int row, int column, int livingNeighbours) {
+        if (livingNeighbours < 2) {
+            cells[row][column] = 0;
+        }
+    }
+
+    private void checkForOverpopulation(int row, int column, int livingNeighbours) {
+        if (livingNeighbours > 3) {
+            cells[row][column] = 0;
         }
     }
 
