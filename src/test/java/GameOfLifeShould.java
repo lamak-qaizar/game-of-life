@@ -50,6 +50,21 @@ public class GameOfLifeShould {
     }
 
     @Test
+    public void beLifelessDueToUnderpopulationAtCorners() {
+        GameOfLife gameOfLife = new GameOfLife(new int[][]{
+                {1, 0, 0, 1},
+                {0, 0, 0, 0},
+                {0, 0, 0, 0},
+                {1, 0, 0, 1}});
+        gameOfLife.tick();
+        gameOfLife.assertState(new int[][]{
+                {0, 0, 0, 0},
+                {0, 0, 0, 0},
+                {0, 0, 0, 0},
+                {0, 0, 0, 0}});
+    }
+
+    @Test
     public void remainTheSameIfEachCellHas2LivingNeighbours() {
         GameOfLife gameOfLife = new GameOfLife(new int[][]{
                 {0, 0, 0, 0},
