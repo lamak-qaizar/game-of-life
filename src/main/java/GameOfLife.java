@@ -59,12 +59,12 @@ public class GameOfLife {
         }
     }
 
-    private static int getNumberOfLivingNeighboursFor(int[][] cells, int row, int column) {
+    private int getNumberOfLivingNeighboursFor(int[][] cells, int row, int column) {
         int livingNeighbours = 0;
         for (int i = -1; i <= 1; i++) {
             for (int j = -1; j <= 1; j++) {
                 if ((i!=0 || j!=0) &&
-                        isWithinGrid(cells, row, column, i, j)) {
+                        isWithinGrid(row, column, i, j)) {
                     if (cells[row + i][column + j] == 1) {
                         livingNeighbours++;
                     }
@@ -74,11 +74,11 @@ public class GameOfLife {
         return livingNeighbours;
     }
 
-    private static boolean isWithinGrid(int[][] cells, int row, int column, int i, int j) {
+    private boolean isWithinGrid(int row, int column, int i, int j) {
         return row + i >= 0
                 && column + j >= 0
-                && row + i < cells.length
-                && column + j < cells[row].length;
+                && row + i < getRows()
+                && column + j < getColumns();
     }
 
     public void assertState(int[][] cells) {
