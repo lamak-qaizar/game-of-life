@@ -4,6 +4,10 @@ public class GameOfLife {
 
     public static final int LIVING_CELL = 1;
     public static final int DEAD_CELL = 0;
+    public static final int NUMER_OF_NEIGHBOURS_TO_BRING_BACK_TO_LIFE = 3;
+    public static final int NUMBER_OF_NEIGHBOURS_TO_KILL_DUE_TO_UNDERPOPULATION = 2;
+    public static final int NUMBER_OF_NEIGHBOURS_TO_KILL_DUE_TO_OVERPOPULATION = 3;
+
     private final int[][] cells;
 
     public GameOfLife(int cells[][]) {
@@ -44,19 +48,19 @@ public class GameOfLife {
 
     private static void checkForBringingBackToLife(int[][] cells, int row, int column,
             int livingNeighbours) {
-        if (livingNeighbours == 3) {
+        if (livingNeighbours == NUMER_OF_NEIGHBOURS_TO_BRING_BACK_TO_LIFE) {
             cells[row][column] = LIVING_CELL;
         }
     }
 
     private static void checkForUnderpopulation(int[][] cells, int row, int column, int livingNeighbours) {
-        if (livingNeighbours < 2) {
+        if (livingNeighbours < NUMBER_OF_NEIGHBOURS_TO_KILL_DUE_TO_UNDERPOPULATION) {
             cells[row][column] = DEAD_CELL;
         }
     }
 
     private static void checkForOverpopulation(int[][] cells, int row, int column, int livingNeighbours) {
-        if (livingNeighbours > 3) {
+        if (livingNeighbours > NUMBER_OF_NEIGHBOURS_TO_KILL_DUE_TO_OVERPOPULATION) {
             cells[row][column] = DEAD_CELL;
         }
     }
@@ -67,7 +71,7 @@ public class GameOfLife {
             for (int j = -1; j <= 1; j++) {
                 if (isNeighbour(i, j) &&
                         isWithinGrid(row, column, i, j)) {
-                    if (cells[row + i][column + j] == 1) {
+                    if (cells[row + i][column + j] == LIVING_CELL) {
                         livingNeighbours++;
                     }
                 }
