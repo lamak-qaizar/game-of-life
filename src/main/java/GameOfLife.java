@@ -27,8 +27,10 @@ public class GameOfLife {
         int livingNeighbours = 0;
         for (int i = -1; i <= 1; i++) {
             for (int j = -1; j <= 1; j++) {
-                if (cells[row+i][column+j] == 1) {
-                    livingNeighbours++;
+                if (column + j >= 0) {
+                    if (cells[row + i][column + j] == 1) {
+                        livingNeighbours++;
+                    }
                 }
             }
         }
