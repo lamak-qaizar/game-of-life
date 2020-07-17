@@ -40,7 +40,7 @@ public class GameOfLifeShould {
                 {0, 0, 1, 0},
                 {1, 0, 0, 0},
                 {0, 0, 0, 1},
-                {0, 0, 0, 0}});
+                {0, 1, 0, 0}});
         gameOfLife.tick();
         gameOfLife.assertState(new int[][]{
                 {0, 0, 0, 0},
