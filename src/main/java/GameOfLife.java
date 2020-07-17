@@ -2,6 +2,8 @@ import java.util.Arrays;
 
 public class GameOfLife {
 
+    public static final int LIVING_CELL = 1;
+    public static final int DEAD_CELL = 0;
     private final int[][] cells;
 
     public GameOfLife(int cells[][]) {
@@ -22,13 +24,13 @@ public class GameOfLife {
 
         for (int row = 0; row < getRows(); row++) {
             for (int column = 0; column < getColumns(); column++) {
-                if (copy[row][column] == 1) {
+                if (copy[row][column] == LIVING_CELL) {
                     int livingNeighbours = getNumberOfLivingNeighboursFor(copy, row, column);
                     checkForUnderpopulation(this.cells, row, column, livingNeighbours);
                     checkForOverpopulation(this.cells, row, column, livingNeighbours);
                 }
 
-                if (copy[row][column] == 0) {
+                if (copy[row][column] == DEAD_CELL) {
                     int livingNeighbours = getNumberOfLivingNeighboursFor(copy, row, column);
                     checkForBringingBackToLife(this.cells, row, column, livingNeighbours);
                 }
@@ -43,19 +45,19 @@ public class GameOfLife {
     private static void checkForBringingBackToLife(int[][] cells, int row, int column,
             int livingNeighbours) {
         if (livingNeighbours == 3) {
-            cells[row][column] = 1;
+            cells[row][column] = LIVING_CELL;
         }
     }
 
     private static void checkForUnderpopulation(int[][] cells, int row, int column, int livingNeighbours) {
         if (livingNeighbours < 2) {
-            cells[row][column] = 0;
+            cells[row][column] = DEAD_CELL;
         }
     }
 
     private static void checkForOverpopulation(int[][] cells, int row, int column, int livingNeighbours) {
         if (livingNeighbours > 3) {
-            cells[row][column] = 0;
+            cells[row][column] = DEAD_CELL;
         }
     }
 
