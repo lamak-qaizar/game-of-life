@@ -9,25 +9,19 @@ public class GameOfLife {
     public static final int NUMBER_OF_NEIGHBOURS_TO_KILL_DUE_TO_OVERPOPULATION = 3;
 
     private final int[][] cells;
+    private final Cells cellsObj;
 
     public GameOfLife(int cells[][]) {
         this.cells = createCopyOf(cells);
-    }
-
-    private int getRows() {
-        return this.cells.length;
-    }
-
-    private int getColumns() {
-        return this.cells[0].length;
+        cellsObj = new Cells(cells);
     }
 
     public void tick() {
 
-        int[][] copy = createCopyOf(cells);
+        int[][] copy = createCopyOf(getCells());
 
-        for (int row = 0; row < getRows(); row++) {
-            for (int column = 0; column < getColumns(); column++) {
+        for (int row = 0; row < cellsObj.getRows(); row++) {
+            for (int column = 0; column < cellsObj.getColumns(); column++) {
                 int livingNeighbours = getNumberOfLivingNeighboursFor(copy, row, column);
                 livingCellChecks(copy[row][column], row, column, livingNeighbours);
                 deadCellChecks(copy[row][column], row, column, livingNeighbours);
@@ -44,7 +38,7 @@ public class GameOfLife {
     private void livingCellChecks(int cell, int row, int column, int livingNeighbours) {
         if (cell == LIVING_CELL) {
             checkForUnderpopulation(row, column, livingNeighbours);
-            checkForOverpopulation(this.cells, row, column, livingNeighbours);
+            checkForOverpopulation(this.getCells(), row, column, livingNeighbours);
         }
     }
 
@@ -60,7 +54,7 @@ public class GameOfLife {
     }
 
     private void reviveCell(int row, int column) {
-        this.cells[row][column] = LIVING_CELL;
+        this.getCells()[row][column] = LIVING_CELL;
     }
 
     private void checkForUnderpopulation(int row, int column,
@@ -78,7 +72,7 @@ public class GameOfLife {
     }
 
     private void killCell(int row, int column) {
-        this.cells[row][column] = DEAD_CELL;
+        this.getCells()[row][column] = DEAD_CELL;
     }
 
     private int getNumberOfLivingNeighboursFor(int[][] cells, int row, int column) {
@@ -103,11 +97,15 @@ public class GameOfLife {
     private boolean isWithinGrid(int row, int column, int i, int j) {
         return row + i >= 0
                 && column + j >= 0
-                && row + i < getRows()
-                && column + j < getColumns();
+                && row + i < cellsObj.getRows()
+                && column + j < cellsObj.getColumns();
     }
 
     public void assertState(int[][] cells) {
-        assert Arrays.deepEquals(this.cells, cells);
+        assert Arrays.deepEquals(this.getCells(), cells);
+    }
+
+    public int[][] getCells() {
+        return cells;
     }
 }
