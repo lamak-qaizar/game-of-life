@@ -10,4 +10,15 @@ public class GameOfLifeShould {
         gameOfLife.tick();
         assertEquals(gameOfLife.hasLife(), false);
     }
+
+    @Test
+    public void beLifelessDueToUnderpopulation() {
+        GameOfLife gameOfLife = new GameOfLife(new int[][]{
+                {0, 0, 0, 0},
+                {0, 1, 0, 0},
+                {0, 0, 0, 0},
+                {0, 0, 0, 0}});
+        gameOfLife.tick();
+        assertEquals(gameOfLife.hasLife(), false);
+    }
 }
