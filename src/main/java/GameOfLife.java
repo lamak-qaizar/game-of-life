@@ -28,17 +28,23 @@ public class GameOfLife {
 
         for (int row = 0; row < getRows(); row++) {
             for (int column = 0; column < getColumns(); column++) {
-                if (copy[row][column] == LIVING_CELL) {
-                    int livingNeighbours = getNumberOfLivingNeighboursFor(copy, row, column);
-                    checkForUnderpopulation(this.cells, row, column, livingNeighbours);
-                    checkForOverpopulation(this.cells, row, column, livingNeighbours);
-                }
-
-                if (copy[row][column] == DEAD_CELL) {
-                    int livingNeighbours = getNumberOfLivingNeighboursFor(copy, row, column);
-                    checkForBringingBackToLife(this.cells, row, column, livingNeighbours);
-                }
+                int livingNeighbours = getNumberOfLivingNeighboursFor(copy, row, column);
+                livingCellChecks(copy[row][column], row, column, livingNeighbours);
+                deadCellChecks(copy[row][column], row, column, livingNeighbours);
             }
+        }
+    }
+
+    private void deadCellChecks(int cell, int row, int column, int livingNeighbours) {
+        if (cell == DEAD_CELL) {
+            checkForBringingBackToLife(this.cells, row, column, livingNeighbours);
+        }
+    }
+
+    private void livingCellChecks(int cell, int row, int column, int livingNeighbours) {
+        if (cell == LIVING_CELL) {
+            checkForUnderpopulation(this.cells, row, column, livingNeighbours);
+            checkForOverpopulation(this.cells, row, column, livingNeighbours);
         }
     }
 
