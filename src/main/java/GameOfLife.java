@@ -10,7 +10,7 @@ public class GameOfLife {
 
     public void tick() {
 
-        int[][] copy = Arrays.stream(cells).map(int[]::clone).toArray(int[][]::new);
+        int[][] copy = getCopyOf(cells);
 
         for (int row = 0; row < cells.length; row++) {
             for (int column = 0; column < cells[row].length; column++) {
@@ -26,6 +26,10 @@ public class GameOfLife {
                 }
             }
         }
+    }
+
+    private int[][] getCopyOf(int[][] cells) {
+        return Arrays.stream(cells).map(int[]::clone).toArray(int[][]::new);
     }
 
     private static void checkForBringingBackToLife(int[][] cells, int row, int column,
