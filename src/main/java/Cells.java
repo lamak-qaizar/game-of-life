@@ -29,12 +29,8 @@ public class Cells {
         return this.getCells()[0].length;
     }
 
-    public void killCell(int row, int column) {
-        this.getCells()[row][column] = GameOfLife.DEAD_CELL;
-    }
-
-    public void reviveCell(int row, int column) {
-        this.getCells()[row][column] = GameOfLife.LIVING_CELL;
+    public void set(int row, int column, int value) {
+        this.getCells()[row][column] = value;
     }
 
     public boolean at(int i, int j, int value) {

@@ -52,8 +52,7 @@ public class GameOfLife {
     }
 
     private void reviveCell(int row, int column) {
-        this.getCells()[row][column] = LIVING_CELL;
-        this.cells.reviveCell(row, column);
+        this.cells.set(row, column, LIVING_CELL);
     }
 
     private void checkForUnderpopulation(int row, int column,
@@ -71,8 +70,7 @@ public class GameOfLife {
     }
 
     private void killCell(int row, int column) {
-        this.getCells()[row][column] = DEAD_CELL;
-        this.cells.killCell(row, column);
+        this.cells.set(row, column, DEAD_CELL);
     }
 
     private int getNumberOfLivingNeighboursFor(int[][] cells, int row, int column) {
