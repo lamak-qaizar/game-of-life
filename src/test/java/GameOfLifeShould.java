@@ -75,7 +75,7 @@ public class GameOfLifeShould {
         gameOfLife.assertState(new int[][]{
                 {0, 0, 0, 0},
                 {0, 1, 1, 0},
-                {0, 1, 0, 0},
+                {0, 1, 1, 0},
                 {0, 0, 0, 0}});
     }
 
@@ -88,9 +88,24 @@ public class GameOfLifeShould {
                 {0, 0, 0, 0}});
         gameOfLife.tick();
         gameOfLife.assertState(new int[][]{
-                {0, 1, 0, 0},
-                {0, 0, 0, 0},
                 {0, 1, 1, 0},
+                {1, 0, 0, 0},
+                {0, 1, 1, 0},
+                {0, 0, 0, 0}});
+    }
+
+    @Test
+    public void bringCellsToLifeDueToExactlyThreeLivingNeighbours() {
+        GameOfLife gameOfLife = new GameOfLife(new int[][]{
+                {0, 1, 0, 1},
+                {0, 0, 1, 0},
+                {0, 0, 0, 0},
+                {0, 0, 0, 0}});
+        gameOfLife.tick();
+        gameOfLife.assertState(new int[][]{
+                {0, 0, 1, 0},
+                {0, 0, 1, 0},
+                {0, 0, 0, 0},
                 {0, 0, 0, 0}});
     }
 }
