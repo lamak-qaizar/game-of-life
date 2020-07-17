@@ -59,13 +59,15 @@ public class GameOfLife {
         }
     }
 
-    private static void checkForUnderpopulation(int[][] cells, int row, int column, int livingNeighbours) {
+    private static void checkForUnderpopulation(int[][] cells, int row, int column,
+            int livingNeighbours) {
         if (livingNeighbours < NUMBER_OF_NEIGHBOURS_TO_KILL_DUE_TO_UNDERPOPULATION) {
             cells[row][column] = DEAD_CELL;
         }
     }
 
-    private static void checkForOverpopulation(int[][] cells, int row, int column, int livingNeighbours) {
+    private static void checkForOverpopulation(int[][] cells, int row, int column,
+            int livingNeighbours) {
         if (livingNeighbours > NUMBER_OF_NEIGHBOURS_TO_KILL_DUE_TO_OVERPOPULATION) {
             cells[row][column] = DEAD_CELL;
         }
@@ -87,7 +89,7 @@ public class GameOfLife {
     }
 
     private boolean isNeighbour(int i, int j) {
-        return i!=0 || j!=0;
+        return i != 0 || j != 0;
     }
 
     private boolean isWithinGrid(int row, int column, int i, int j) {
