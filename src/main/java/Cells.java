@@ -32,14 +32,14 @@ public class Cells {
         }
     }
 
-    private Cells(Map<Coordinate, Cell> cells, int rows, int columns) {
-        this.cells.putAll(cells);
-        this.rows = rows;
-        this.columns = columns;
+    protected Cells(Cells cells) {
+        this.cells.putAll(cells.cells);
+        this.rows = cells.rows;
+        this.columns = cells.columns;
     }
 
     public Cells copy() {
-        return new Cells(cells, this.rows, this.columns);
+        return new Cells(this);
     }
 
     public int getRows() {

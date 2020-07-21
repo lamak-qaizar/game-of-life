@@ -18,7 +18,7 @@ public class GameOfLife {
 
     public void tick() {
 
-        Cells cellsAfterTick = this.cells.copy();
+        Cells cellsAfterTick = new MutatingCells(cells);
 
         for (Coordinate coordinate : getAllCoordinate()) {
             livingCellChecks(cellsAfterTick, coordinate);
