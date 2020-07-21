@@ -77,8 +77,7 @@ public class Cells {
 
 
     private boolean isWithinGrid(Coordinate coordinate) {
-        return isRowWithinGrid(coordinate.getRow())
-                && isColumnWithinGrid(coordinate.getColumn());
+        return cells.containsKey(coordinate);
     }
 
     private boolean isColumnWithinGrid(int column) {
