@@ -80,16 +80,6 @@ public class Cells {
         return cells.containsKey(coordinate);
     }
 
-    private boolean isColumnWithinGrid(int column) {
-        return column >= 0
-                && column < getColumns();
-    }
-
-    private boolean isRowWithinGrid(int row) {
-        return row >= 0
-                && row < getRows();
-    }
-
 
     public void assertState(int[][] cells) {
         for (int row = 0; row < cells.length; row++) {
