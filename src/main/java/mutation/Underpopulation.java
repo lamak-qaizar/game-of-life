@@ -12,6 +12,6 @@ public class Underpopulation extends Mutation {
 
     @Override
     protected void doIt(Cells cells, Coordinate coordinate) {
-        killCell(cells, coordinate);
+        kill(cells, coordinate);
     }
 }
