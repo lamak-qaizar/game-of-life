@@ -90,7 +90,8 @@ public class Cells {
     public void assertState(int[][] cells) {
         for (int row = 0; row < cells.length; row++) {
             for (int column = 0; column < cells[row].length; column++) {
-                assert this.cells.get(new Coordinate(row, column)).is(cells[row][column]);
+                Cell cell = Cell.create(cells[row][column]);
+                assert this.cells.get(new Coordinate(row, column)).equals(cell);
             }
         }
     }
