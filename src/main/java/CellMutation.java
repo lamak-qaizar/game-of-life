@@ -11,4 +11,8 @@ public abstract class CellMutation {
     protected void killCell(Cells cells, Coordinate coordinate) {
         cells.set(coordinate, Cell.DEAD);
     }
+
+    protected void revive(Cells cells, Coordinate coordinate) {
+        cells.set(coordinate, Cell.ALIVE);
+    }
 }
