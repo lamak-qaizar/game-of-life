@@ -46,13 +46,13 @@ public class GameOfLife {
     }
 
     private void deadCellChecks(Cells cellsAfterTick, Coordinate coordinate) {
-        if (cells.at(coordinate, DEAD_CELL)) {
+        if (cells.at(coordinate).isDead()) {
             checkForBringingBackToLife(cellsAfterTick, coordinate);
         }
     }
 
     private void livingCellChecks(Cells cellsAfterTick, Coordinate coordinate) {
-        if (cells.at(coordinate, LIVING_CELL)) {
+        if (cells.at(coordinate).isAlive()) {
             checkForUnderpopulation(cellsAfterTick, coordinate);
             checkForOverpopulation(cellsAfterTick, coordinate);
         }

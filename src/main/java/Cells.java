@@ -58,6 +58,10 @@ public class Cells {
         return cells.get(coordinate).is(value);
     }
 
+    public Cell at(Coordinate coordinate) {
+        return cells.get(coordinate);
+    }
+
     public int countNeighboursMatching(Coordinate coordinate, int value) {
         List<Coordinate> neighbours = NEIGHBOUR_OFFSETS.stream()
                 .map(offset -> offset.applyTo(coordinate)).collect(
