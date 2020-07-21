@@ -27,7 +27,7 @@ public class Cells {
         columns = cells[0].length;
         for (int row = 0; row < cells.length; row++) {
             for (int column = 0; column < cells[row].length; column++) {
-                this.cells.put(new Coordinate(row, column), new Cell(cells[row][column]));
+                this.cells.put(new Coordinate(row, column), Cell.create(cells[row][column]));
             }
         }
     }
@@ -51,7 +51,7 @@ public class Cells {
     }
 
     public void set(Coordinate coordinate, int value) {
-        cells.put(coordinate, new Cell(value));
+        cells.put(coordinate, Cell.create(value));
     }
 
     public boolean at(Coordinate coordinate, int value) {

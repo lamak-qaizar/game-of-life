@@ -1,9 +1,16 @@
-public class Cell {
+public abstract class Cell {
 
     int value;
 
-    public Cell(int value) {
+    Cell(int value) {
         this.value = value;
+    }
+
+    public static Cell create(int value) {
+        if (value == 0) {
+            return new DeadCell();
+        }
+        return new LivingCell();
     }
 
     public boolean is(int value) {
