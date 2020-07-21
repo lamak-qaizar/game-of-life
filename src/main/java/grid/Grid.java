@@ -58,14 +58,17 @@ public class Grid {
     }
 
     public int countMatching(Coordinate coordinate, Cell cell) {
-        List<Coordinate> neighbours = NEIGHBOUR_OFFSETS.stream()
-                .map(offset -> offset.applyTo(coordinate)).collect(
-                        Collectors.toList());
+        List<Coordinate> neighbours = getNeighbours(coordinate);
         return countMatching(cell, neighbours);
     }
 
-    private int countMatching(Cell cell, List<Coordinate> neighbours) {
+    private List<Coordinate> getNeighbours(Coordinate coordinate) {
+        return NEIGHBOUR_OFFSETS.stream()
+                .map(offset -> offset.applyTo(coordinate)).collect(
+                        Collectors.toList());
+    }
 
+    private int countMatching(Cell cell, List<Coordinate> neighbours) {
         if (neighbours.size() == 0) {
             return 0;
         }
