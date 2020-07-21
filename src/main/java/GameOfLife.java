@@ -24,9 +24,7 @@ public class GameOfLife {
 
         for (Coordinate coordinate : getAllCoordinate()) {
             for (Mutation mutation : MUTATIONS) {
-                if (mutation.check(mutatingCells, coordinate)) {
-                    mutation.doIt(mutatingCells, coordinate);
-                }
+                mutation.mutate(mutatingCells, coordinate);
             }
         }
 
