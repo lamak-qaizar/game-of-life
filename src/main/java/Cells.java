@@ -91,6 +91,10 @@ public class Cells {
 
 
     public void assertState(int[][] cells) {
-        assert Arrays.deepEquals(this.cells, cells);
+        for (int row = 0; row < cells.length; row++) {
+            for (int column = 0; column < cells[row].length; column++) {
+                assert cells[row][column] == cellsMap.get(new Coordinate(row, column));
+            }
+        }
     }
 }
