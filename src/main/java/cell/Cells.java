@@ -39,10 +39,6 @@ public class Cells {
         this.columns = cells.columns;
     }
 
-    public Cells copy() {
-        return new Cells(this);
-    }
-
     public int getRows() {
         return rows;
     }
