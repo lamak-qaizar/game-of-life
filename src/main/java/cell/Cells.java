@@ -54,14 +54,14 @@ public class Cells {
         cells.put(coordinate, cell);
     }
 
-    public int countNeighboursMatching(Coordinate coordinate, Cell cell) {
+    public int countMatching(Coordinate coordinate, Cell cell) {
         List<Coordinate> neighbours = NEIGHBOUR_OFFSETS.stream()
                 .map(offset -> offset.applyTo(coordinate)).collect(
                         Collectors.toList());
-        return countNeighboursMatching(cell, neighbours);
+        return countMatching(cell, neighbours);
     }
 
-    private int countNeighboursMatching(Cell cell, List<Coordinate> neighbours) {
+    private int countMatching(Cell cell, List<Coordinate> neighbours) {
 
         if (neighbours.size() == 0) {
             return 0;
@@ -69,7 +69,7 @@ public class Cells {
 
         Coordinate neighbour = neighbours.get(0);
         return (at(neighbour).equals(cell) ? 1 : 0)
-                + countNeighboursMatching(cell, neighbours.subList(1, neighbours.size()));
+                + countMatching(cell, neighbours.subList(1, neighbours.size()));
     }
 
 
