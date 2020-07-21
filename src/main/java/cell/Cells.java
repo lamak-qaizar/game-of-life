@@ -47,6 +47,10 @@ public class Cells {
         return this.columns;
     }
 
+    private Cell at(Coordinate coordinate) {
+        return cells.getOrDefault(coordinate, Cell.OUT_OF_GRID);
+    }
+
     public void set(Coordinate coordinate, Cell cell) {
         cells.put(coordinate, cell);
     }
@@ -66,8 +70,7 @@ public class Cells {
         }
 
         Coordinate neighbour = neighbours.get(0);
-        if (isWithinGrid(neighbour) &&
-                cells.get(neighbour).equals(cell)) {
+        if (at(neighbour).equals(cell)) {
             return 1 + countNeighboursMatching(cell,
                     neighbours.subList(1, neighbours.size()));
         }

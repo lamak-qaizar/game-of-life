@@ -6,6 +6,7 @@ public abstract class Cell {
 
     public static final Cell DEAD = new DeadCell();
     public static final Cell ALIVE = new LivingCell();
+    public static final Cell OUT_OF_GRID = new OutOfGrid();
 
     Cell(int value) {
         this.value = value;
