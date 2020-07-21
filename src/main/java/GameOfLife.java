@@ -25,7 +25,7 @@ public class GameOfLife {
             deadCellChecks(mutatingCells, coordinate);
         }
 
-        this.cells = mutatingCells;
+        this.cells = mutatingCells.mutate();
     }
 
     private List<Coordinate> getAllCoordinate() {
@@ -67,8 +67,8 @@ public class GameOfLife {
         return cells.countNeighboursMatching(coordinate, Cell.ALIVE);
     }
 
-    private void bringCellToLife(Cells cellsAfterTick, Coordinate coordinate) {
-        cellsAfterTick.set(coordinate, Cell.ALIVE);
+    private void bringCellToLife(MutatingCells mutatingCells, Coordinate coordinate) {
+        mutatingCells.set(coordinate, Cell.ALIVE);
     }
 
     private void checkForUnderpopulation(MutatingCells mutatingCells, Coordinate coordinate) {

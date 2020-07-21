@@ -1,12 +1,18 @@
 public class MutatingCells extends Cells {
 
-    Cells mutating;
+    private Cells mutating;
 
     public MutatingCells(Cells cells) {
         super(cells);
+        mutating = new Cells(cells);
     }
 
-    public void mutate(Coordinate coordinate, Cell cell) {
+    @Override
+    public void set(Coordinate coordinate, Cell cell) {
         mutating.set(coordinate, cell);
+    }
+
+    public Cells mutate() {
+        return mutating;
     }
 }
