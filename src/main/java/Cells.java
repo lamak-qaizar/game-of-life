@@ -66,10 +66,18 @@ public class Cells {
 
 
     private boolean isWithinGrid(int row, int column) {
-        return row >= 0
-                && column >= 0
-                && row < getRows()
+        return isRowWithinGrid(row)
+                && isColumnWithinGrid(column);
+    }
+
+    private boolean isColumnWithinGrid(int column) {
+        return column >= 0
                 && column < getColumns();
+    }
+
+    private boolean isRowWithinGrid(int row) {
+        return row >= 0
+                && row < getRows();
     }
 
 
