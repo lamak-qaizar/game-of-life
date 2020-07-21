@@ -18,14 +18,14 @@ public class GameOfLife {
 
     public void tick() {
 
-        Cells cellsAfterTick = new MutatingCells(cells);
+        MutatingCells mutatingCells = new MutatingCells(cells);
 
         for (Coordinate coordinate : getAllCoordinate()) {
-            livingCellChecks(cellsAfterTick, coordinate);
-            deadCellChecks(cellsAfterTick, coordinate);
+            livingCellChecks(mutatingCells, coordinate);
+            deadCellChecks(mutatingCells, coordinate);
         }
 
-        this.cells = cellsAfterTick;
+        this.cells = mutatingCells;
     }
 
     private List<Coordinate> getAllCoordinate() {
@@ -43,23 +43,23 @@ public class GameOfLife {
                 .mapToObj(column -> new Coordinate(row, column));
     }
 
-    private void deadCellChecks(Cells cellsAfterTick, Coordinate coordinate) {
+    private void deadCellChecks(MutatingCells mutatingCells, Coordinate coordinate) {
         if (cells.at(coordinate).isDead()) {
-            checkForBringingBackToLife(cellsAfterTick, coordinate);
+            checkForBringingBackToLife(mutatingCells, coordinate);
         }
     }
 
-    private void livingCellChecks(Cells cellsAfterTick, Coordinate coordinate) {
+    private void livingCellChecks(MutatingCells mutatingCells, Coordinate coordinate) {
         if (cells.at(coordinate).isAlive()) {
-            checkForUnderpopulation(cellsAfterTick, coordinate);
-            checkForOverpopulation(cellsAfterTick, coordinate);
+            checkForUnderpopulation(mutatingCells, coordinate);
+            checkForOverpopulation(mutatingCells, coordinate);
         }
     }
 
-    private void checkForBringingBackToLife(Cells cellsAfterTick, Coordinate coordinate) {
+    private void checkForBringingBackToLife(MutatingCells mutatingCells, Coordinate coordinate) {
         if (livingNeighboursAround(coordinate)
                 == NUMBER_OF_NEIGHBOURS_TO_BRING_BACK_TO_LIFE) {
-            bringCellToLife(cellsAfterTick, coordinate);
+            bringCellToLife(mutatingCells, coordinate);
         }
     }
 
@@ -71,21 +71,21 @@ public class GameOfLife {
         cellsAfterTick.set(coordinate, Cell.ALIVE);
     }
 
-    private void checkForUnderpopulation(Cells cellsAfterTick, Coordinate coordinate) {
+    private void checkForUnderpopulation(MutatingCells mutatingCells, Coordinate coordinate) {
         if (livingNeighboursAround(coordinate)
                 < NUMBER_OF_NEIGHBOURS_TO_KILL_DUE_TO_UNDERPOPULATION) {
-            killCell(cellsAfterTick, coordinate);
+            killCell(mutatingCells, coordinate);
         }
     }
 
-    private void killCell(Cells cellsAfterTick, Coordinate coordinate) {
-        cellsAfterTick.set(coordinate, Cell.DEAD);
+    private void killCell(MutatingCells mutatingCells, Coordinate coordinate) {
+        mutatingCells.set(coordinate, Cell.DEAD);
     }
 
-    private void checkForOverpopulation(Cells cellsAfterTick, Coordinate coordinate) {
+    private void checkForOverpopulation(MutatingCells mutatingCells, Coordinate coordinate) {
         if (livingNeighboursAround(coordinate)
                 > NUMBER_OF_NEIGHBOURS_TO_KILL_DUE_TO_OVERPOPULATION) {
-            killCell(cellsAfterTick, coordinate);
+            killCell(mutatingCells, coordinate);
         }
     }
 

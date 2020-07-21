@@ -5,4 +5,8 @@ public class MutatingCells extends Cells {
     public MutatingCells(Cells cells) {
         super(cells);
     }
+
+    public void mutate(Coordinate coordinate, Cell cell) {
+        mutating.set(coordinate, cell);
+    }
 }
