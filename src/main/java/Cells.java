@@ -46,6 +46,7 @@ public class Cells {
 
     public void set(Coordinate coordinate, int value) {
         cells[coordinate.getRow()][coordinate.getColumn()] = value;
+        cellsMap.put(coordinate, value);
     }
 
     public boolean at(Coordinate coordinate, int value) {
