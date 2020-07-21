@@ -1,4 +1,4 @@
-package cell;
+package coordinate;
 
 public class Coordinate {
 

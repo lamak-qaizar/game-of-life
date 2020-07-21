@@ -1,12 +1,15 @@
-package cell;
+package grid;
 
+import cell.Cell;
+import coordinate.Offset;
+import coordinate.Coordinate;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class Cells {
+public class Grid {
 
     private final Map<Coordinate, Cell> cells = new HashMap<>();
     private final int rows;
@@ -22,7 +25,7 @@ public class Cells {
             new Offset(1, 0),
             new Offset(1, 1));
 
-    public Cells(int[][] cells) {
+    public Grid(int[][] cells) {
         rows = cells.length;
         columns = cells[0].length;
         for (int row = 0; row < cells.length; row++) {
@@ -32,10 +35,10 @@ public class Cells {
         }
     }
 
-    protected Cells(Cells cells) {
-        this.cells.putAll(cells.cells);
-        this.rows = cells.rows;
-        this.columns = cells.columns;
+    protected Grid(Grid grid) {
+        this.cells.putAll(grid.cells);
+        this.rows = grid.rows;
+        this.columns = grid.columns;
     }
 
     public int getRows() {

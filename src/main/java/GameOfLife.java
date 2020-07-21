@@ -1,6 +1,6 @@
-import cell.Cells;
-import cell.Coordinate;
-import cell.MutatingCells;
+import grid.Grid;
+import coordinate.Coordinate;
+import grid.MutatingGrid;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
@@ -14,10 +14,10 @@ import mutation.Underpopulation;
 
 public class GameOfLife {
 
-    private Cells cells;
+    private Grid grid;
 
     public GameOfLife(int cells[][]) {
-        this.cells = new Cells(cells);
+        this.grid = new Grid(cells);
     }
 
     private static final List<Mutation> MUTATIONS = Arrays.asList(
@@ -27,7 +27,7 @@ public class GameOfLife {
 
     public void tick() {
 
-        MutatingCells mutatingCells = new MutatingCells(cells);
+        MutatingGrid mutatingCells = new MutatingGrid(grid);
 
         for (Coordinate coordinate : getAllCoordinate()) {
             for (Mutation mutation : MUTATIONS) {
@@ -35,12 +35,12 @@ public class GameOfLife {
             }
         }
 
-        this.cells = mutatingCells.mutate();
+        this.grid = mutatingCells.mutate();
     }
 
     private List<Coordinate> getAllCoordinate() {
         return IntStream
-                .range(0, cells.getRows())
+                .range(0, grid.getRows())
                 .mapToObj(this::getCoordinatesInRow)
                 .flatMap(Function.identity())
                 .collect(Collectors.toList());
@@ -49,11 +49,11 @@ public class GameOfLife {
 
     private Stream<Coordinate> getCoordinatesInRow(int row) {
         return IntStream
-                .range(0, cells.getColumns())
+                .range(0, grid.getColumns())
                 .mapToObj(column -> new Coordinate(row, column));
     }
 
     public void assertState(int[][] cells) {
-        this.cells.assertState(cells);
+        this.grid.assertState(cells);
     }
 }

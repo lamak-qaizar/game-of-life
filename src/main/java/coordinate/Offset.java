@@ -1,4 +1,6 @@
-package cell;
+package coordinate;
+
+import coordinate.Coordinate;
 
 public class Offset extends Coordinate {
 
