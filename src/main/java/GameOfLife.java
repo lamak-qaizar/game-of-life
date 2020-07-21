@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -16,6 +17,8 @@ public class GameOfLife {
         this.cells = new Cells(cells);
     }
 
+    private static final List<CellMutation> MUTATIONS = Arrays.asList(new Overpopulation());
+
     public void tick() {
 
         MutatingCells mutatingCells = new MutatingCells(cells);
@@ -23,6 +26,12 @@ public class GameOfLife {
         for (Coordinate coordinate : getAllCoordinate()) {
             livingCellChecks(mutatingCells, coordinate);
             deadCellChecks(mutatingCells, coordinate);
+
+            for (CellMutation cellMutation: MUTATIONS) {
+                if (cellMutation.check(mutatingCells, coordinate)) {
+                    cellMutation.doIt(mutatingCells, coordinate);
+                }
+            }
         }
 
         this.cells = mutatingCells.mutate();
@@ -82,10 +91,10 @@ public class GameOfLife {
         cells.set(coordinate, Cell.DEAD);
     }
 
-    private void checkForOverpopulation(Cells cells, Coordinate coordinate) {
+    private void checkForOverpopulation(Cells mutatingCells, Coordinate coordinate) {
         if (livingNeighboursAround(coordinate)
                 > NUMBER_OF_NEIGHBOURS_TO_KILL_DUE_TO_OVERPOPULATION) {
-            killCell(cells, coordinate);
+            killCell(mutatingCells, coordinate);
         }
     }
 
