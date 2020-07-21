@@ -43,23 +43,23 @@ public class GameOfLife {
                 .mapToObj(column -> new Coordinate(row, column));
     }
 
-    private void deadCellChecks(MutatingCells mutatingCells, Coordinate coordinate) {
+    private void deadCellChecks(Cells cells, Coordinate coordinate) {
         if (cells.at(coordinate).isDead()) {
-            checkForBringingBackToLife(mutatingCells, coordinate);
+            checkForBringingBackToLife(cells, coordinate);
         }
     }
 
-    private void livingCellChecks(MutatingCells mutatingCells, Coordinate coordinate) {
+    private void livingCellChecks(Cells cells, Coordinate coordinate) {
         if (cells.at(coordinate).isAlive()) {
-            checkForUnderpopulation(mutatingCells, coordinate);
-            checkForOverpopulation(mutatingCells, coordinate);
+            checkForUnderpopulation(cells, coordinate);
+            checkForOverpopulation(cells, coordinate);
         }
     }
 
-    private void checkForBringingBackToLife(MutatingCells mutatingCells, Coordinate coordinate) {
+    private void checkForBringingBackToLife(Cells cells, Coordinate coordinate) {
         if (livingNeighboursAround(coordinate)
                 == NUMBER_OF_NEIGHBOURS_TO_BRING_BACK_TO_LIFE) {
-            bringCellToLife(mutatingCells, coordinate);
+            bringCellToLife(cells, coordinate);
         }
     }
 
@@ -67,25 +67,25 @@ public class GameOfLife {
         return cells.countNeighboursMatching(coordinate, Cell.ALIVE);
     }
 
-    private void bringCellToLife(MutatingCells mutatingCells, Coordinate coordinate) {
-        mutatingCells.set(coordinate, Cell.ALIVE);
+    private void bringCellToLife(Cells cells, Coordinate coordinate) {
+        cells.set(coordinate, Cell.ALIVE);
     }
 
-    private void checkForUnderpopulation(MutatingCells mutatingCells, Coordinate coordinate) {
+    private void checkForUnderpopulation(Cells cells, Coordinate coordinate) {
         if (livingNeighboursAround(coordinate)
                 < NUMBER_OF_NEIGHBOURS_TO_KILL_DUE_TO_UNDERPOPULATION) {
-            killCell(mutatingCells, coordinate);
+            killCell(cells, coordinate);
         }
     }
 
-    private void killCell(MutatingCells mutatingCells, Coordinate coordinate) {
-        mutatingCells.set(coordinate, Cell.DEAD);
+    private void killCell(Cells cells, Coordinate coordinate) {
+        cells.set(coordinate, Cell.DEAD);
     }
 
-    private void checkForOverpopulation(MutatingCells mutatingCells, Coordinate coordinate) {
+    private void checkForOverpopulation(Cells cells, Coordinate coordinate) {
         if (livingNeighboursAround(coordinate)
                 > NUMBER_OF_NEIGHBOURS_TO_KILL_DUE_TO_OVERPOPULATION) {
-            killCell(mutatingCells, coordinate);
+            killCell(cells, coordinate);
         }
     }
 
