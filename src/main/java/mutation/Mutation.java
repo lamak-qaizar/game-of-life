@@ -6,13 +6,13 @@ import cell.Coordinate;
 
 public abstract class Mutation {
 
-    protected abstract boolean check(Cells cells, Coordinate coordinate);
+    protected abstract boolean itAppliesAt(Cells cells, Coordinate coordinate);
 
-    protected abstract void doIt(Cells cells, Coordinate coordinate);
+    protected abstract void applyAt(Cells cells, Coordinate coordinate);
 
     public void mutate(Cells cells, Coordinate coordinate) {
-        if (check(cells, coordinate)) {
-            doIt(cells, coordinate);
+        if (itAppliesAt(cells, coordinate)) {
+            applyAt(cells, coordinate);
         }
     }
 
