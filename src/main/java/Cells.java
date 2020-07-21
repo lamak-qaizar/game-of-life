@@ -54,10 +54,6 @@ public class Cells {
         cells.put(coordinate, Cell.create(value));
     }
 
-    public boolean at(Coordinate coordinate, int value) {
-        return cells.get(coordinate).is(value);
-    }
-
     public Cell at(Coordinate coordinate) {
         return cells.get(coordinate);
     }
