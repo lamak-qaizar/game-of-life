@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class GameOfLife {
 
     private static final int LIVING_CELL = 1;
@@ -16,14 +19,22 @@ public class GameOfLife {
 
         Cells cellsAfterTick = this.cells.copy();
 
-        for (int row = 0; row < cells.getRows(); row++) {
-            for (int column = 0; column < cells.getColumns(); column++) {
-                livingCellChecks(cellsAfterTick, new Coordinate(row, column));
-                deadCellChecks(cellsAfterTick, new Coordinate(row, column));
-            }
+        for (Coordinate coordinate : getAllCoordinate()) {
+            livingCellChecks(cellsAfterTick, coordinate);
+            deadCellChecks(cellsAfterTick, coordinate);
         }
 
         this.cells = cellsAfterTick;
+    }
+
+    private List<Coordinate> getAllCoordinate() {
+        List<Coordinate> coordinates = new ArrayList<>();
+        for (int row = 0; row < cells.getRows(); row++) {
+            for (int column = 0; column < cells.getColumns(); column++) {
+                coordinates.add(new Coordinate(row, column));
+            }
+        }
+        return coordinates;
     }
 
     private void deadCellChecks(Cells cellsAfterTick, Coordinate coordinate) {
