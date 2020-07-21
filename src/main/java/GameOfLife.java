@@ -46,10 +46,6 @@ public class GameOfLife {
         }
     }
 
-    private int livingNeighboursAround(int row, int column) {
-        return cells.countNeighboursMatching(row, column, LIVING_CELL);
-    }
-
     private int livingNeighboursAround(Coordinate coordinate) {
         return cells.countNeighboursMatching(coordinate.getRow(), coordinate.getColumn(), LIVING_CELL);
     }
