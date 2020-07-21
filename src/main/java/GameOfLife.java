@@ -47,7 +47,7 @@ public class GameOfLife {
     }
 
     private int livingNeighboursAround(Coordinate coordinate) {
-        return cells.countNeighboursMatching(coordinate.getRow(), coordinate.getColumn(), LIVING_CELL);
+        return cells.countNeighboursMatching(coordinate, LIVING_CELL);
     }
 
     private void bringCellToLife(Cells cellsAfterTick, Coordinate coordinate) {
