@@ -1,8 +1,12 @@
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Cells {
 
     private final int[][] cells;
+
+    private Map<Coordinate, Integer> cellsMap = new HashMap<>();
 
     private static final int[][] NEIGHBOURS = new int[][]{
             {-1, -1},
@@ -17,6 +21,11 @@ public class Cells {
 
     public Cells(int[][] cells) {
         this.cells = createCopyOf(cells);
+        for (int row = 0; row < cells.length; row++) {
+            for (int column = 0; column < cells[row].length; column++) {
+                cellsMap.put(new Coordinate(row, column), cells[row][column]);
+            }
+        }
     }
 
     public Cells copy() {
