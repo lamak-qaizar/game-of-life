@@ -4,7 +4,7 @@ public class Cells {
 
     private final int[][] cells;
 
-    private static final int[][] NEIGHBOURS = new int[][] {
+    private static final int[][] NEIGHBOURS = new int[][]{
             {-1, -1},
             {-1, 0},
             {-1, 1},
@@ -50,8 +50,10 @@ public class Cells {
     private int countNeighboursMatching(Coordinate coordinate, int value, int[][] neighbours) {
         if (neighbours.length > 0) {
             int[] neighbour = neighbours[0];
-            if(isWithinGrid(coordinate.getRow() + neighbour[0], coordinate.getColumn() + neighbour[1]) &&
-                    cells[coordinate.getRow() + neighbour[0]][coordinate.getColumn()+neighbour[1]] == value) {
+            if (isWithinGrid(coordinate.getRow() + neighbour[0],
+                    coordinate.getColumn() + neighbour[1]) &&
+                    cells[coordinate.getRow() + neighbour[0]][coordinate.getColumn() + neighbour[1]]
+                            == value) {
                 return 1 + countNeighboursMatching(coordinate, value,
                         Arrays.copyOfRange(neighbours, 1, neighbours.length));
             } else {
