@@ -58,23 +58,23 @@ public class Cells {
         return cells.get(coordinate);
     }
 
-    public int countNeighboursMatching(Coordinate coordinate, int value) {
+    public int countNeighboursMatching(Coordinate coordinate, Cell cell) {
         List<Coordinate> neighbours = NEIGHBOUR_OFFSETS.stream()
                 .map(offset -> offset.applyTo(coordinate)).collect(
                         Collectors.toList());
-        return countNeighboursMatching(value, neighbours);
+        return countNeighboursMatching(cell, neighbours);
     }
 
-    private int countNeighboursMatching(int value,
+    private int countNeighboursMatching(Cell cell,
             List<Coordinate> neighbours) {
         if (neighbours.size() > 0) {
             Coordinate neighbour = neighbours.get(0);
             if (isWithinGrid(neighbour) &&
-                    cells.get(neighbour).is(value)) {
-                return 1 + countNeighboursMatching(value,
+                    cells.get(neighbour).equals(cell)) {
+                return 1 + countNeighboursMatching(cell,
                         neighbours.subList(1, neighbours.size()));
             } else {
-                return 0 + countNeighboursMatching(value,
+                return 0 + countNeighboursMatching(cell,
                         neighbours.subList(1, neighbours.size()));
             }
         }

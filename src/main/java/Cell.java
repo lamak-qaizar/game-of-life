@@ -27,4 +27,23 @@ public abstract class Cell {
     public boolean is(int value) {
         return this.value == value;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Cell cell = (Cell) o;
+
+        return value == cell.value;
+    }
+
+    @Override
+    public int hashCode() {
+        return value;
+    }
 }

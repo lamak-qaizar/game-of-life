@@ -66,7 +66,7 @@ public class GameOfLife {
     }
 
     private int livingNeighboursAround(Coordinate coordinate) {
-        return cells.countNeighboursMatching(coordinate, LIVING_CELL);
+        return cells.countNeighboursMatching(coordinate, Cell.ALIVE);
     }
 
     private void bringCellToLife(Cells cellsAfterTick, Coordinate coordinate) {
