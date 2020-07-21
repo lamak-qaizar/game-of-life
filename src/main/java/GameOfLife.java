@@ -57,7 +57,7 @@ public class GameOfLife {
     private void checkForUnderpopulation(Cells cellsAfterTick, int row, int column) {
         if (livingNeighboursAround(row, column)
                 < NUMBER_OF_NEIGHBOURS_TO_KILL_DUE_TO_UNDERPOPULATION) {
-            killCell(cellsAfterTick, row, column);
+            killCell(cellsAfterTick, new Coordinate(row, column));
         }
     }
 
@@ -65,10 +65,14 @@ public class GameOfLife {
         cellsAfterTick.set(row, column, DEAD_CELL);
     }
 
+    private void killCell(Cells cellsAfterTick, Coordinate coordinate) {
+        cellsAfterTick.set(coordinate.getRow(), coordinate.getColumn(), DEAD_CELL);
+    }
+
     private void checkForOverpopulation(Cells cellsAfterTick, int row, int column) {
         if (livingNeighboursAround(row, column)
                 > NUMBER_OF_NEIGHBOURS_TO_KILL_DUE_TO_OVERPOPULATION) {
-            killCell(cellsAfterTick, row, column);
+            killCell(cellsAfterTick, new Coordinate(row, column));
         }
     }
 
