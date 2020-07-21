@@ -51,10 +51,6 @@ public class Cells {
         cells.put(coordinate, cell);
     }
 
-    public Cell at(Coordinate coordinate) {
-        return cells.get(coordinate);
-    }
-
     public int countNeighboursMatching(Coordinate coordinate, Cell cell) {
         List<Coordinate> neighbours = NEIGHBOUR_OFFSETS.stream()
                 .map(offset -> offset.applyTo(coordinate)).collect(
@@ -64,18 +60,19 @@ public class Cells {
 
     private int countNeighboursMatching(Cell cell,
             List<Coordinate> neighbours) {
-        if (neighbours.size() > 0) {
-            Coordinate neighbour = neighbours.get(0);
-            if (isWithinGrid(neighbour) &&
-                    cells.get(neighbour).equals(cell)) {
-                return 1 + countNeighboursMatching(cell,
-                        neighbours.subList(1, neighbours.size()));
-            } else {
-                return 0 + countNeighboursMatching(cell,
-                        neighbours.subList(1, neighbours.size()));
-            }
+
+        if (neighbours.size() == 0) {
+            return 0;
         }
-        return 0;
+
+        Coordinate neighbour = neighbours.get(0);
+        if (isWithinGrid(neighbour) &&
+                cells.get(neighbour).equals(cell)) {
+            return 1 + countNeighboursMatching(cell,
+                    neighbours.subList(1, neighbours.size()));
+        }
+        return 0 + countNeighboursMatching(cell,
+                    neighbours.subList(1, neighbours.size()));
     }
 
 
