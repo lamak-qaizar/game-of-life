@@ -1,3 +1,9 @@
+package mutation;
+
+import cell.Cell;
+import cell.Cells;
+import cell.Coordinate;
+
 public abstract class Mutation {
 
     protected abstract boolean check(Cells cells, Coordinate coordinate);

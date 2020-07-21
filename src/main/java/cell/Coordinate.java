@@ -1,3 +1,5 @@
+package cell;
+
 public class Coordinate {
 
     private final int row;

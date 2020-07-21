@@ -1,3 +1,8 @@
+package mutation;
+
+import cell.Cells;
+import cell.Coordinate;
+
 public class Underpopulation extends Mutation {
 
     @Override

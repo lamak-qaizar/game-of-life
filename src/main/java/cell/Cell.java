@@ -1,3 +1,5 @@
+package cell;
+
 public abstract class Cell {
 
     int value;

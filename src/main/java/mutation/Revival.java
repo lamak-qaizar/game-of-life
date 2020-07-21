@@ -1,3 +1,8 @@
+package mutation;
+
+import cell.Cells;
+import cell.Coordinate;
+
 public class Revival extends Mutation {
 
     @Override

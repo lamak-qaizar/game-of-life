@@ -1,3 +1,5 @@
+package cell;
+
 public class DeadCell extends Cell {
 
     public DeadCell() {

@@ -1,3 +1,5 @@
+package cell;
+
 public class LivingCell extends Cell {
 
     public LivingCell() {

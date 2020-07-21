@@ -1,3 +1,5 @@
+package cell;
+
 public class MutatingCells extends Cells {
 
     private Cells mutating;

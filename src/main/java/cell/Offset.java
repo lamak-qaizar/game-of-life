@@ -1,3 +1,5 @@
+package cell;
+
 public class Offset extends Coordinate {
 
     public Offset(int x, int y) {
