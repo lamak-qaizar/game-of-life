@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class GameOfLife {
 
@@ -36,11 +38,10 @@ public class GameOfLife {
     }
 
     private List<Coordinate> getCoordinatesInRow(int row) {
-        List<Coordinate> coordinatesInColumn = new ArrayList<>();
-        for (int column = 0; column < cells.getColumns(); column++) {
-            coordinatesInColumn.add(new Coordinate(row, column));
-        }
-        return coordinatesInColumn;
+        return IntStream
+                .range(0, cells.getColumns())
+                .mapToObj(column -> new Coordinate(row, column))
+                .collect(Collectors.toList());
     }
 
     private void deadCellChecks(Cells cellsAfterTick, Coordinate coordinate) {
