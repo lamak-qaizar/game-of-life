@@ -1,4 +1,4 @@
-public class Revival extends CellMutation {
+public class Revival extends Mutation {
 
     @Override
     public boolean check(Cells cells, Coordinate coordinate) {

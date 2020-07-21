@@ -1,4 +1,4 @@
-public class Underpopulation extends CellMutation {
+public class Underpopulation extends Mutation {
 
     @Override
     public boolean check(Cells cells, Coordinate coordinate) {

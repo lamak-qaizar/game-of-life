@@ -13,7 +13,7 @@ public class GameOfLife {
         this.cells = new Cells(cells);
     }
 
-    private static final List<CellMutation> MUTATIONS = Arrays.asList(
+    private static final List<Mutation> MUTATIONS = Arrays.asList(
             new Overpopulation(),
             new Underpopulation(),
             new Revival());
@@ -23,9 +23,9 @@ public class GameOfLife {
         MutatingCells mutatingCells = new MutatingCells(cells);
 
         for (Coordinate coordinate : getAllCoordinate()) {
-            for (CellMutation cellMutation: MUTATIONS) {
-                if (cellMutation.check(mutatingCells, coordinate)) {
-                    cellMutation.doIt(mutatingCells, coordinate);
+            for (Mutation mutation : MUTATIONS) {
+                if (mutation.check(mutatingCells, coordinate)) {
+                    mutation.doIt(mutatingCells, coordinate);
                 }
             }
         }

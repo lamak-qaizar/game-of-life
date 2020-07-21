@@ -1,4 +1,4 @@
-public abstract class CellMutation {
+public abstract class Mutation {
 
     public abstract boolean check(Cells cells, Coordinate coordinate);
 

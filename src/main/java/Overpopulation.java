@@ -1,4 +1,4 @@
-public class Overpopulation extends CellMutation {
+public class Overpopulation extends Mutation {
 
     @Override
     public boolean check(Cells cells, Coordinate coordinate) {
