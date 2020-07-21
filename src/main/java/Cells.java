@@ -50,10 +50,6 @@ public class Cells {
         return this.columns;
     }
 
-    public void set(Coordinate coordinate, int value) {
-        cells.put(coordinate, Cell.create(value));
-    }
-
     public void set(Coordinate coordinate, Cell cell) {
         cells.put(coordinate, cell);
     }
