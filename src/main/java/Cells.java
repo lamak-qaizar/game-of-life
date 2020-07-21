@@ -39,8 +39,16 @@ public class Cells {
         cells[row][column] = value;
     }
 
+    public void set(Coordinate coordinate, int value) {
+        cells[coordinate.getRow()][coordinate.getColumn()] = value;
+    }
+
     public boolean at(int i, int j, int value) {
         return cells[i][j] == value;
+    }
+
+    public boolean at(Coordinate coordinate, int value) {
+        return cells[coordinate.getRow()][coordinate.getColumn()] == value;
     }
 
     public int countNeighboursMatching(int row, int column, int value) {
