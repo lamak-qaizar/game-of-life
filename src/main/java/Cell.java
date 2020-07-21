@@ -24,10 +24,6 @@ public abstract class Cell {
         return new LivingCell();
     }
 
-    public boolean is(int value) {
-        return this.value == value;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
