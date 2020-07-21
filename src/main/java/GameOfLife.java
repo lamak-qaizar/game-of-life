@@ -7,8 +7,6 @@ import java.util.stream.Stream;
 
 public class GameOfLife {
 
-    private static final int NUMBER_OF_NEIGHBOURS_TO_BRING_BACK_TO_LIFE = 3;
-
     private Cells cells;
 
     public GameOfLife(int cells[][]) {
@@ -25,8 +23,6 @@ public class GameOfLife {
         MutatingCells mutatingCells = new MutatingCells(cells);
 
         for (Coordinate coordinate : getAllCoordinate()) {
-            deadCellChecks(mutatingCells, coordinate);
-
             for (CellMutation cellMutation: MUTATIONS) {
                 if (cellMutation.check(mutatingCells, coordinate)) {
                     cellMutation.doIt(mutatingCells, coordinate);
@@ -50,19 +46,6 @@ public class GameOfLife {
         return IntStream
                 .range(0, cells.getColumns())
                 .mapToObj(column -> new Coordinate(row, column));
-    }
-
-    private void deadCellChecks(Cells cells, Coordinate coordinate) {
-        if (cells.at(coordinate).isDead()) {
-            checkForBringingBackToLife(cells, coordinate);
-        }
-    }
-
-    private void checkForBringingBackToLife(Cells cells, Coordinate coordinate) {
-        if (livingNeighboursAround(coordinate)
-                == NUMBER_OF_NEIGHBOURS_TO_BRING_BACK_TO_LIFE) {
-            bringCellToLife(cells, coordinate);
-        }
     }
 
     private int livingNeighboursAround(Coordinate coordinate) {
