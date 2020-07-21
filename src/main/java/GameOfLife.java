@@ -70,7 +70,7 @@ public class GameOfLife {
     }
 
     private void bringCellToLife(Cells cellsAfterTick, Coordinate coordinate) {
-        cellsAfterTick.set(coordinate, LIVING_CELL);
+        cellsAfterTick.set(coordinate, Cell.ALIVE);
     }
 
     private void checkForUnderpopulation(Cells cellsAfterTick, Coordinate coordinate) {
