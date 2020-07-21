@@ -1,6 +1,9 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Cells {
 
@@ -17,6 +20,17 @@ public class Cells {
             {1, -1},
             {1, 0},
             {1, 1}};
+
+    private static final List<Offset> NEIGHBOUR_OFFSETS = new ArrayList() {{
+        add(new Offset(-1, -1));
+        add(new Offset(-1, 0));
+        add(new Offset(-1, 1));
+        add(new Offset(0, -1));
+        add(new Offset(0, 1));
+        add(new Offset(1, -1));
+        add(new Offset(1, 0));
+        add(new Offset(1, 1));
+    }};
 
 
     public Cells(int[][] cells) {
@@ -56,7 +70,9 @@ public class Cells {
     }
 
     public int countNeighboursMatching(Coordinate coordinate, int value) {
-        return countNeighboursMatching(coordinate, value, NEIGHBOURS);
+        List<Coordinate> neighbours = NEIGHBOUR_OFFSETS.stream().map(offset -> offset.applyTo(coordinate)).collect(
+                Collectors.toList());
+        return countNeighboursMatching(coordinate, value, neighbours);
     }
 
     private int countNeighboursMatching(Coordinate coordinate, int value, int[][] neighbours) {
@@ -70,6 +86,19 @@ public class Cells {
             } else {
                 return 0 + countNeighboursMatching(coordinate, value,
                         Arrays.copyOfRange(neighbours, 1, neighbours.length));
+            }
+        }
+        return 0;
+    }
+
+    private int countNeighboursMatching(Coordinate coordinate, int value, List<Coordinate> neighbours) {
+        if (neighbours.size() > 0) {
+            Coordinate neighbour = neighbours.get(0);
+            if (isWithinGrid(neighbour) &&
+                    cells.get(neighbour) == value) {
+                return 1 + countNeighboursMatching(coordinate, value, neighbours.subList(1, neighbours.size()));
+            } else {
+                return 0 + countNeighboursMatching(coordinate, value, neighbours.subList(1, neighbours.size()));
             }
         }
         return 0;
