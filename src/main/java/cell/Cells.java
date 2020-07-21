@@ -1,6 +1,7 @@
 package cell;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,17 +13,15 @@ public class Cells {
     private final int rows;
     private final int columns;
 
-    private static final List<Offset> NEIGHBOUR_OFFSETS = new ArrayList() {{
-        add(new Offset(-1, -1));
-        add(new Offset(-1, 0));
-        add(new Offset(-1, 1));
-        add(new Offset(0, -1));
-        add(new Offset(0, 1));
-        add(new Offset(1, -1));
-        add(new Offset(1, 0));
-        add(new Offset(1, 1));
-    }};
-
+    private static final List<Offset> NEIGHBOUR_OFFSETS = Arrays.asList(
+            new Offset(-1, -1),
+            new Offset(-1, 0),
+            new Offset(-1, 1),
+            new Offset(0, -1),
+            new Offset(0, 1),
+            new Offset(1, -1),
+            new Offset(1, 0),
+            new Offset(1, 1));
 
     public Cells(int[][] cells) {
         rows = cells.length;
