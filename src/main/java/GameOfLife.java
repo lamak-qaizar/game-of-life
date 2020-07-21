@@ -19,16 +19,16 @@ public class GameOfLife {
         for (int row = 0; row < cells.getRows(); row++) {
             for (int column = 0; column < cells.getColumns(); column++) {
                 livingCellChecks(cellsAfterTick, new Coordinate(row, column));
-                deadCellChecks(cellsAfterTick, row, column);
+                deadCellChecks(cellsAfterTick, new Coordinate(row, column));
             }
         }
 
         this.cells = cellsAfterTick;
     }
 
-    private void deadCellChecks(Cells cellsAfterTick, int row, int column) {
-        if (cells.at(row, column, DEAD_CELL)) {
-            checkForBringingBackToLife(cellsAfterTick, row, column);
+    private void deadCellChecks(Cells cellsAfterTick, Coordinate coordinate) {
+        if (cells.at(coordinate.getRow(), coordinate.getColumn(), DEAD_CELL)) {
+            checkForBringingBackToLife(cellsAfterTick, coordinate);
         }
     }
 
@@ -39,10 +39,10 @@ public class GameOfLife {
         }
     }
 
-    private void checkForBringingBackToLife(Cells cellsAfterTick, int row, int column) {
-        if (livingNeighboursAround(row, column)
+    private void checkForBringingBackToLife(Cells cellsAfterTick, Coordinate coordinate) {
+        if (livingNeighboursAround(coordinate.getRow(), coordinate.getColumn())
                 == NUMBER_OF_NEIGHBOURS_TO_BRING_BACK_TO_LIFE) {
-            bringCellToLife(cellsAfterTick, new Coordinate(row, column));
+            bringCellToLife(cellsAfterTick, coordinate);
         }
     }
 
