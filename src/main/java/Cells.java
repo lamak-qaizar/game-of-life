@@ -62,6 +62,25 @@ public class Cells {
         return 0;
     }
 
+    public int countNeighboursMatching(Coordinate coordinate, int value) {
+        return countNeighboursMatching(coordinate, value, NEIGHBOURS);
+    }
+
+    private int countNeighboursMatching(Coordinate coordinate, int value, int[][] neighbours) {
+        if (neighbours.length > 0) {
+            int[] neighbour = neighbours[0];
+            if(isWithinGrid(coordinate.getRow() + neighbour[0], coordinate.getColumn() + neighbour[1]) &&
+                    cells[coordinate.getRow() + neighbour[0]][coordinate.getColumn()+neighbour[1]] == value) {
+                return 1 + countNeighboursMatching(coordinate.getRow(), coordinate.getColumn(), value,
+                        Arrays.copyOfRange(neighbours, 1, neighbours.length));
+            } else {
+                return 0 + countNeighboursMatching(coordinate.getRow(), coordinate.getColumn(), value,
+                        Arrays.copyOfRange(neighbours, 1, neighbours.length));
+            }
+        }
+        return 0;
+    }
+
 
     private boolean isWithinGrid(int row, int column) {
         return row >= 0
