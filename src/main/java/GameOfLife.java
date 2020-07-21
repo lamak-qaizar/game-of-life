@@ -18,7 +18,7 @@ public class GameOfLife {
 
         for (int row = 0; row < cells.getRows(); row++) {
             for (int column = 0; column < cells.getColumns(); column++) {
-                livingCellChecks(cellsAfterTick, row, column);
+                livingCellChecks(cellsAfterTick, new Coordinate(row, column));
                 deadCellChecks(cellsAfterTick, row, column);
             }
         }
@@ -32,10 +32,10 @@ public class GameOfLife {
         }
     }
 
-    private void livingCellChecks(Cells cellsAfterTick, int row, int column) {
-        if (cells.at(row, column, LIVING_CELL)) {
-            checkForUnderpopulation(cellsAfterTick, row, column);
-            checkForOverpopulation(cellsAfterTick, row, column);
+    private void livingCellChecks(Cells cellsAfterTick, Coordinate coordinate) {
+        if (cells.at(coordinate.getRow(), coordinate.getColumn(), LIVING_CELL)) {
+            checkForUnderpopulation(cellsAfterTick, coordinate.getRow(), coordinate.getColumn());
+            checkForOverpopulation(cellsAfterTick, coordinate.getRow(), coordinate.getColumn());
         }
     }
 
