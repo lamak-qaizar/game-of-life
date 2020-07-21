@@ -79,11 +79,6 @@ public class Cells {
     }
 
 
-    private boolean isWithinGrid(Coordinate coordinate) {
-        return cells.containsKey(coordinate);
-    }
-
-
     public void assertState(int[][] cells) {
         for (int row = 0; row < cells.length; row++) {
             for (int column = 0; column < cells[row].length; column++) {
