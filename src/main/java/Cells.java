@@ -39,10 +39,6 @@ public class Cells {
         return new Cells(cells, this.rows, this.columns);
     }
 
-    private int[][] createCopyOf(int[][] cells) {
-        return Arrays.stream(cells).map(int[]::clone).toArray(int[][]::new);
-    }
-
     public int getRows() {
         return rows;
     }
