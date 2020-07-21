@@ -42,7 +42,7 @@ public class GameOfLife {
     private void checkForBringingBackToLife(Cells cellsAfterTick, int row, int column) {
         if (livingNeighboursAround(row, column)
                 == NUMBER_OF_NEIGHBOURS_TO_BRING_BACK_TO_LIFE) {
-            bringCellToLife(cellsAfterTick, row, column);
+            bringCellToLife(cellsAfterTick, new Coordinate(row, column));
         }
     }
 
@@ -50,8 +50,8 @@ public class GameOfLife {
         return cells.countNeighboursMatching(row, column, LIVING_CELL);
     }
 
-    private void bringCellToLife(Cells cellsAfterTick, int row, int column) {
-        cellsAfterTick.set(row, column, LIVING_CELL);
+    private void bringCellToLife(Cells cellsAfterTick, Coordinate coordinate) {
+        cellsAfterTick.set(coordinate.getRow(), coordinate.getColumn(), LIVING_CELL);
     }
 
     private void checkForUnderpopulation(Cells cellsAfterTick, int row, int column) {
