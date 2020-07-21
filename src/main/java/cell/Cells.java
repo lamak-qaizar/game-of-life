@@ -1,6 +1,5 @@
 package cell;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -62,20 +61,15 @@ public class Cells {
         return countNeighboursMatching(cell, neighbours);
     }
 
-    private int countNeighboursMatching(Cell cell,
-            List<Coordinate> neighbours) {
+    private int countNeighboursMatching(Cell cell, List<Coordinate> neighbours) {
 
         if (neighbours.size() == 0) {
             return 0;
         }
 
         Coordinate neighbour = neighbours.get(0);
-        if (at(neighbour).equals(cell)) {
-            return 1 + countNeighboursMatching(cell,
-                    neighbours.subList(1, neighbours.size()));
-        }
-        return 0 + countNeighboursMatching(cell,
-                    neighbours.subList(1, neighbours.size()));
+        return (at(neighbour).equals(cell) ? 1 : 0)
+                + countNeighboursMatching(cell, neighbours.subList(1, neighbours.size()));
     }
 
 
