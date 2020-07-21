@@ -30,11 +30,17 @@ public class GameOfLife {
     private List<Coordinate> getAllCoordinate() {
         List<Coordinate> coordinates = new ArrayList<>();
         for (int row = 0; row < cells.getRows(); row++) {
-            for (int column = 0; column < cells.getColumns(); column++) {
-                coordinates.add(new Coordinate(row, column));
-            }
+            coordinates.addAll(getCoordinatesInRow(row));
         }
         return coordinates;
+    }
+
+    private List<Coordinate> getCoordinatesInRow(int row) {
+        List<Coordinate> coordinatesInColumn = new ArrayList<>();
+        for (int column = 0; column < cells.getColumns(); column++) {
+            coordinatesInColumn.add(new Coordinate(row, column));
+        }
+        return coordinatesInColumn;
     }
 
     private void deadCellChecks(Cells cellsAfterTick, Coordinate coordinate) {
