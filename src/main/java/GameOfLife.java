@@ -61,10 +61,6 @@ public class GameOfLife {
         }
     }
 
-    private void killCell(Cells cellsAfterTick, int row, int column) {
-        cellsAfterTick.set(row, column, DEAD_CELL);
-    }
-
     private void killCell(Cells cellsAfterTick, Coordinate coordinate) {
         cellsAfterTick.set(coordinate.getRow(), coordinate.getColumn(), DEAD_CELL);
     }
