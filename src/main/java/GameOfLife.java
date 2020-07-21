@@ -9,7 +9,6 @@ public class GameOfLife {
 
     private static final int NUMBER_OF_NEIGHBOURS_TO_BRING_BACK_TO_LIFE = 3;
     private static final int NUMBER_OF_NEIGHBOURS_TO_KILL_DUE_TO_UNDERPOPULATION = 2;
-    private static final int NUMBER_OF_NEIGHBOURS_TO_KILL_DUE_TO_OVERPOPULATION = 3;
 
     private Cells cells;
 
@@ -61,7 +60,6 @@ public class GameOfLife {
     private void livingCellChecks(Cells cells, Coordinate coordinate) {
         if (cells.at(coordinate).isAlive()) {
             checkForUnderpopulation(cells, coordinate);
-            checkForOverpopulation(cells, coordinate);
         }
     }
 
@@ -89,13 +87,6 @@ public class GameOfLife {
 
     private void killCell(Cells cells, Coordinate coordinate) {
         cells.set(coordinate, Cell.DEAD);
-    }
-
-    private void checkForOverpopulation(Cells mutatingCells, Coordinate coordinate) {
-        if (livingNeighboursAround(coordinate)
-                > NUMBER_OF_NEIGHBOURS_TO_KILL_DUE_TO_OVERPOPULATION) {
-            killCell(mutatingCells, coordinate);
-        }
     }
 
     public void assertState(int[][] cells) {
