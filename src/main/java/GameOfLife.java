@@ -16,7 +16,7 @@ public class GameOfLife {
         this.cells = new Cells(cells);
     }
 
-    private static final List<CellMutation> MUTATIONS = Arrays.asList(new Overpopulation());
+    private static final List<CellMutation> MUTATIONS = Arrays.asList(new Overpopulation(), new Underpopulation());
 
     public void tick() {
 
