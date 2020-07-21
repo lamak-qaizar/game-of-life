@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class Cells {
 
-    private final Map<Coordinate, Integer> cells = new HashMap<>();
+    private final Map<Coordinate, Cell> cells = new HashMap<>();
     private final int rows;
     private final int columns;
 
@@ -27,12 +27,12 @@ public class Cells {
         columns = cells[0].length;
         for (int row = 0; row < cells.length; row++) {
             for (int column = 0; column < cells[row].length; column++) {
-                this.cells.put(new Coordinate(row, column), cells[row][column]);
+                this.cells.put(new Coordinate(row, column), new Cell(cells[row][column]));
             }
         }
     }
 
-    private Cells(Map<Coordinate, Integer> cells, int rows, int columns) {
+    private Cells(Map<Coordinate, Cell> cells, int rows, int columns) {
         this.cells.putAll(cells);
         this.rows = rows;
         this.columns = columns;
@@ -51,11 +51,11 @@ public class Cells {
     }
 
     public void set(Coordinate coordinate, int value) {
-        cells.put(coordinate, value);
+        cells.put(coordinate, new Cell(value));
     }
 
     public boolean at(Coordinate coordinate, int value) {
-        return cells.get(coordinate) == value;
+        return cells.get(coordinate).is(value);
     }
 
     public int countNeighboursMatching(Coordinate coordinate, int value) {
@@ -70,7 +70,7 @@ public class Cells {
         if (neighbours.size() > 0) {
             Coordinate neighbour = neighbours.get(0);
             if (isWithinGrid(neighbour) &&
-                    cells.get(neighbour) == value) {
+                    cells.get(neighbour).is(value)) {
                 return 1 + countNeighboursMatching(value,
                         neighbours.subList(1, neighbours.size()));
             } else {
@@ -90,7 +90,7 @@ public class Cells {
     public void assertState(int[][] cells) {
         for (int row = 0; row < cells.length; row++) {
             for (int column = 0; column < cells[row].length; column++) {
-                assert cells[row][column] == this.cells.get(new Coordinate(row, column));
+                assert this.cells.get(new Coordinate(row, column)).is(cells[row][column]);
             }
         }
     }
