@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,16 +9,6 @@ public class Cells {
     private final Map<Coordinate, Integer> cells = new HashMap<>();
     private final int rows;
     private final int columns;
-
-    private static final int[][] NEIGHBOURS = new int[][]{
-            {-1, -1},
-            {-1, 0},
-            {-1, 1},
-            {0, -1},
-            {0, 1},
-            {1, -1},
-            {1, 0},
-            {1, 1}};
 
     private static final List<Offset> NEIGHBOUR_OFFSETS = new ArrayList() {{
         add(new Offset(-1, -1));
@@ -70,35 +59,23 @@ public class Cells {
     }
 
     public int countNeighboursMatching(Coordinate coordinate, int value) {
-        List<Coordinate> neighbours = NEIGHBOUR_OFFSETS.stream().map(offset -> offset.applyTo(coordinate)).collect(
-                Collectors.toList());
-        return countNeighboursMatching(coordinate, value, neighbours);
+        List<Coordinate> neighbours = NEIGHBOUR_OFFSETS.stream()
+                .map(offset -> offset.applyTo(coordinate)).collect(
+                        Collectors.toList());
+        return countNeighboursMatching(value, neighbours);
     }
 
-    private int countNeighboursMatching(Coordinate coordinate, int value, int[][] neighbours) {
-        if (neighbours.length > 0) {
-            int[] neighbour = neighbours[0];
-            Coordinate neighbourCoordinate = new Coordinate(coordinate.getRow() + neighbour[0], coordinate.getColumn() + neighbour[1]);
-            if (isWithinGrid(neighbourCoordinate) &&
-                    cells.get(neighbourCoordinate) == value) {
-                return 1 + countNeighboursMatching(coordinate, value,
-                        Arrays.copyOfRange(neighbours, 1, neighbours.length));
-            } else {
-                return 0 + countNeighboursMatching(coordinate, value,
-                        Arrays.copyOfRange(neighbours, 1, neighbours.length));
-            }
-        }
-        return 0;
-    }
-
-    private int countNeighboursMatching(Coordinate coordinate, int value, List<Coordinate> neighbours) {
+    private int countNeighboursMatching(int value,
+            List<Coordinate> neighbours) {
         if (neighbours.size() > 0) {
             Coordinate neighbour = neighbours.get(0);
             if (isWithinGrid(neighbour) &&
                     cells.get(neighbour) == value) {
-                return 1 + countNeighboursMatching(coordinate, value, neighbours.subList(1, neighbours.size()));
+                return 1 + countNeighboursMatching(value,
+                        neighbours.subList(1, neighbours.size()));
             } else {
-                return 0 + countNeighboursMatching(coordinate, value, neighbours.subList(1, neighbours.size()));
+                return 0 + countNeighboursMatching(value,
+                        neighbours.subList(1, neighbours.size()));
             }
         }
         return 0;
