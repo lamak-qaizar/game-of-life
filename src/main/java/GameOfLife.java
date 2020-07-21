@@ -48,18 +48,6 @@ public class GameOfLife {
                 .mapToObj(column -> new Coordinate(row, column));
     }
 
-    private int livingNeighboursAround(Coordinate coordinate) {
-        return cells.countNeighboursMatching(coordinate, Cell.ALIVE);
-    }
-
-    private void bringCellToLife(Cells cells, Coordinate coordinate) {
-        cells.set(coordinate, Cell.ALIVE);
-    }
-
-    private void killCell(Cells cells, Coordinate coordinate) {
-        cells.set(coordinate, Cell.DEAD);
-    }
-
     public void assertState(int[][] cells) {
         this.cells.assertState(cells);
     }
