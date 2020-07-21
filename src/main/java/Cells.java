@@ -43,25 +43,6 @@ public class Cells {
         return cells[coordinate.getRow()][coordinate.getColumn()] == value;
     }
 
-    public int countNeighboursMatching(int row, int column, int value) {
-        return countNeighboursMatching(row, column, value, NEIGHBOURS);
-    }
-
-    private int countNeighboursMatching(int row, int column, int value, int[][] neighbours) {
-        if (neighbours.length > 0) {
-            int[] neighbour = neighbours[0];
-            if(isWithinGrid(row + neighbour[0], column + neighbour[1]) &&
-                    cells[row + neighbour[0]][column+neighbour[1]] == value) {
-                return 1 + countNeighboursMatching(row, column, value,
-                        Arrays.copyOfRange(neighbours, 1, neighbours.length));
-            } else {
-                return 0 + countNeighboursMatching(row, column, value,
-                        Arrays.copyOfRange(neighbours, 1, neighbours.length));
-            }
-        }
-        return 0;
-    }
-
     public int countNeighboursMatching(Coordinate coordinate, int value) {
         return countNeighboursMatching(coordinate, value, NEIGHBOURS);
     }
@@ -71,10 +52,10 @@ public class Cells {
             int[] neighbour = neighbours[0];
             if(isWithinGrid(coordinate.getRow() + neighbour[0], coordinate.getColumn() + neighbour[1]) &&
                     cells[coordinate.getRow() + neighbour[0]][coordinate.getColumn()+neighbour[1]] == value) {
-                return 1 + countNeighboursMatching(coordinate.getRow(), coordinate.getColumn(), value,
+                return 1 + countNeighboursMatching(coordinate, value,
                         Arrays.copyOfRange(neighbours, 1, neighbours.length));
             } else {
-                return 0 + countNeighboursMatching(coordinate.getRow(), coordinate.getColumn(), value,
+                return 0 + countNeighboursMatching(coordinate, value,
                         Arrays.copyOfRange(neighbours, 1, neighbours.length));
             }
         }
