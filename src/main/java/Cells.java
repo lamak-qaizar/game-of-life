@@ -60,10 +60,9 @@ public class Cells {
     private int countNeighboursMatching(Coordinate coordinate, int value, int[][] neighbours) {
         if (neighbours.length > 0) {
             int[] neighbour = neighbours[0];
-            if (isWithinGrid(coordinate.getRow() + neighbour[0],
-                    coordinate.getColumn() + neighbour[1]) &&
-                    cells[coordinate.getRow() + neighbour[0]][coordinate.getColumn() + neighbour[1]]
-                            == value) {
+            Coordinate neighbourCoordinate = new Coordinate(coordinate.getRow() + neighbour[0], coordinate.getColumn() + neighbour[1]);
+            if (isWithinGrid(neighbourCoordinate) &&
+                    cellsMap.get(neighbourCoordinate) == value) {
                 return 1 + countNeighboursMatching(coordinate, value,
                         Arrays.copyOfRange(neighbours, 1, neighbours.length));
             } else {
@@ -78,6 +77,11 @@ public class Cells {
     private boolean isWithinGrid(int row, int column) {
         return isRowWithinGrid(row)
                 && isColumnWithinGrid(column);
+    }
+
+    private boolean isWithinGrid(Coordinate coordinate) {
+        return isRowWithinGrid(coordinate.getRow())
+                && isColumnWithinGrid(coordinate.getColumn());
     }
 
     private boolean isColumnWithinGrid(int column) {
