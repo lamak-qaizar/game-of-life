@@ -2,6 +2,8 @@ public abstract class Cell {
 
     int value;
 
+    public static final Cell DEAD = new DeadCell();
+
     Cell(int value) {
         this.value = value;
     }

@@ -54,6 +54,10 @@ public class Cells {
         cells.put(coordinate, Cell.create(value));
     }
 
+    public void set(Coordinate coordinate, Cell cell) {
+        cells.put(coordinate, cell);
+    }
+
     public Cell at(Coordinate coordinate) {
         return cells.get(coordinate);
     }

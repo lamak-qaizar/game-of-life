@@ -81,7 +81,7 @@ public class GameOfLife {
     }
 
     private void killCell(Cells cellsAfterTick, Coordinate coordinate) {
-        cellsAfterTick.set(coordinate, DEAD_CELL);
+        cellsAfterTick.set(coordinate, Cell.DEAD);
     }
 
     private void checkForOverpopulation(Cells cellsAfterTick, Coordinate coordinate) {
