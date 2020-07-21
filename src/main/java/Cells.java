@@ -6,7 +6,7 @@ public class Cells {
 
     private final int[][] cells;
 
-    private Map<Coordinate, Integer> cellsMap = new HashMap<>();
+    private final Map<Coordinate, Integer> cellsMap = new HashMap<>();
 
     private static final int[][] NEIGHBOURS = new int[][]{
             {-1, -1},
@@ -50,7 +50,7 @@ public class Cells {
     }
 
     public boolean at(Coordinate coordinate, int value) {
-        return cells[coordinate.getRow()][coordinate.getColumn()] == value;
+        return cellsMap.get(coordinate) == value;
     }
 
     public int countNeighboursMatching(Coordinate coordinate, int value) {
