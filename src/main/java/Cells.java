@@ -4,9 +4,9 @@ import java.util.Map;
 
 public class Cells {
 
-    private final int[][] cells;
-
     private final Map<Coordinate, Integer> cellsMap = new HashMap<>();
+    private final int rows;
+    private final int columns;
 
     private static final int[][] NEIGHBOURS = new int[][]{
             {-1, -1},
@@ -20,7 +20,8 @@ public class Cells {
 
 
     public Cells(int[][] cells) {
-        this.cells = createCopyOf(cells);
+        rows = cells.length;
+        columns = cells[0].length;
         for (int row = 0; row < cells.length; row++) {
             for (int column = 0; column < cells[row].length; column++) {
                 cellsMap.put(new Coordinate(row, column), cells[row][column]);
@@ -28,8 +29,14 @@ public class Cells {
         }
     }
 
+    private Cells(Map<Coordinate, Integer> cells, int rows, int columns) {
+        this.cellsMap.putAll(cells);
+        this.rows = rows;
+        this.columns = columns;
+    }
+
     public Cells copy() {
-        return new Cells(createCopyOf(this.cells));
+        return new Cells(cellsMap, this.rows, this.columns);
     }
 
     private int[][] createCopyOf(int[][] cells) {
@@ -37,15 +44,14 @@ public class Cells {
     }
 
     public int getRows() {
-        return cells.length;
+        return rows;
     }
 
     public int getColumns() {
-        return cells[0].length;
+        return this.columns;
     }
 
     public void set(Coordinate coordinate, int value) {
-        cells[coordinate.getRow()][coordinate.getColumn()] = value;
         cellsMap.put(coordinate, value);
     }
 
