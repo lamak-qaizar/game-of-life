@@ -35,16 +35,8 @@ public class Cells {
         return cells[0].length;
     }
 
-    public void set(int row, int column, int value) {
-        cells[row][column] = value;
-    }
-
     public void set(Coordinate coordinate, int value) {
         cells[coordinate.getRow()][coordinate.getColumn()] = value;
-    }
-
-    public boolean at(int i, int j, int value) {
-        return cells[i][j] == value;
     }
 
     public boolean at(Coordinate coordinate, int value) {
@@ -70,17 +62,6 @@ public class Cells {
         return 0;
     }
 
-
-    private boolean isNeighbour(int i, int j) {
-        return i != 0 || j != 0;
-    }
-
-    private boolean isWithinGrid(int row, int column, int i, int j) {
-        return row + i >= 0
-                && column + j >= 0
-                && row + i < getRows()
-                && column + j < getColumns();
-    }
 
     private boolean isWithinGrid(int row, int column) {
         return row >= 0
