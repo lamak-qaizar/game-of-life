@@ -8,7 +8,6 @@ import java.util.stream.Stream;
 public class GameOfLife {
 
     private static final int NUMBER_OF_NEIGHBOURS_TO_BRING_BACK_TO_LIFE = 3;
-    private static final int NUMBER_OF_NEIGHBOURS_TO_KILL_DUE_TO_UNDERPOPULATION = 2;
 
     private Cells cells;
 
@@ -23,7 +22,6 @@ public class GameOfLife {
         MutatingCells mutatingCells = new MutatingCells(cells);
 
         for (Coordinate coordinate : getAllCoordinate()) {
-            livingCellChecks(mutatingCells, coordinate);
             deadCellChecks(mutatingCells, coordinate);
 
             for (CellMutation cellMutation: MUTATIONS) {
@@ -57,12 +55,6 @@ public class GameOfLife {
         }
     }
 
-    private void livingCellChecks(Cells cells, Coordinate coordinate) {
-        if (cells.at(coordinate).isAlive()) {
-            checkForUnderpopulation(cells, coordinate);
-        }
-    }
-
     private void checkForBringingBackToLife(Cells cells, Coordinate coordinate) {
         if (livingNeighboursAround(coordinate)
                 == NUMBER_OF_NEIGHBOURS_TO_BRING_BACK_TO_LIFE) {
@@ -76,13 +68,6 @@ public class GameOfLife {
 
     private void bringCellToLife(Cells cells, Coordinate coordinate) {
         cells.set(coordinate, Cell.ALIVE);
-    }
-
-    private void checkForUnderpopulation(Cells cells, Coordinate coordinate) {
-        if (livingNeighboursAround(coordinate)
-                < NUMBER_OF_NEIGHBOURS_TO_KILL_DUE_TO_UNDERPOPULATION) {
-            killCell(cells, coordinate);
-        }
     }
 
     private void killCell(Cells cells, Coordinate coordinate) {
