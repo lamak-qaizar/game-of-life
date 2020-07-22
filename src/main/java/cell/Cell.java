@@ -12,14 +12,6 @@ public abstract class Cell {
         this.value = value;
     }
 
-    public boolean isAlive() {
-        return true;
-    }
-
-    public final boolean isDead() {
-        return !isAlive();
-    }
-
     public static Cell create(int value) {
         return value == 0? new DeadCell(): ALIVE;
     }
