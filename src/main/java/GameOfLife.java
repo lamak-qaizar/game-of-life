@@ -29,7 +29,7 @@ public class GameOfLife {
 
         MutatingGrid mutatingCells = new MutatingGrid(grid);
 
-        for (Coordinate coordinate : getAllCoordinate()) {
+        for (Coordinate coordinate : allCoordinates()) {
             for (Mutation mutation : MUTATIONS) {
                 mutation.mutate(mutatingCells, coordinate);
             }
@@ -38,7 +38,7 @@ public class GameOfLife {
         this.grid = mutatingCells.mutate();
     }
 
-    private List<Coordinate> getAllCoordinate() {
+    private List<Coordinate> allCoordinates() {
         return IntStream
                 .range(0, grid.getRows())
                 .mapToObj(this::getCoordinatesInRow)
