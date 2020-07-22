@@ -6,7 +6,6 @@ import coordinate.Coordinates;
 import coordinate.Neighbours;
 import java.util.HashMap;
 import java.util.Map;
-import mutation.Mutation;
 
 public class Grid {
 
@@ -16,13 +15,10 @@ public class Grid {
         this.cells.putAll(grid.cells);
     }
 
-    public Grid() {}
-
-    public void apply(Mutation mutation) {
-        coordinates().stream().forEach(coordinate -> mutation.apply(this, coordinate));
+    public Grid() {
     }
 
-    private Coordinates coordinates() {
+    public Coordinates coordinates() {
         return new Coordinates(cells.keySet());
     }
 

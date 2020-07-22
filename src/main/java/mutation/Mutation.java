@@ -10,10 +10,10 @@ public abstract class Mutation {
 
     protected abstract void applyAt(Grid grid, Coordinate coordinate);
 
-    public void apply(Grid grid, Coordinate coordinate) {
-        if (itAppliesAt(grid, coordinate)) {
-            applyAt(grid, coordinate);
-        }
+    public void apply(Grid grid) {
+        grid.coordinates().stream()
+                .filter(c -> itAppliesAt(grid, c))
+                .forEach(c -> applyAt(grid, c));
     }
 
     protected int livingNeighboursAround(Grid grid, Coordinate coordinate) {

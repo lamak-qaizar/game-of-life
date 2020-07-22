@@ -28,7 +28,7 @@ public class GameOfLife {
     }
 
     private void applyMutationsTo(Grid grid) {
-        MUTATIONS.stream().forEach(grid::apply);
+        MUTATIONS.stream().forEach(mutation -> mutation.apply(grid));
     }
 
     public void assertState(int[][] cells) {
