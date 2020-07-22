@@ -11,18 +11,6 @@ public class Neighbours extends Coordinates {
         super(coordinates);
     }
 
-    public boolean isEmpty() {
-        return this.coordinates.size() == 0;
-    }
-
-    public Coordinate getFirst() {
-        return coordinates.get(0);
-    }
-
-    public Neighbours excludeFirst() {
-        return new Neighbours(coordinates.subList(1, coordinates.size()));
-    }
-
     private static final List<Offset> NEIGHBOUR_OFFSETS = Arrays.asList(
             new Offset(-1, -1),
             new Offset(-1, 0),
@@ -45,10 +33,6 @@ public class Neighbours extends Coordinates {
                 .filter(predicate)
                 .collect(Collectors.toList());
         return new Neighbours(coordinates);
-    }
-
-    public int count() {
-        return coordinates.size();
     }
 
     public boolean greaterThan(int value) {
