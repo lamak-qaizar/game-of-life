@@ -24,6 +24,8 @@ public class Grid {
         this.cells.putAll(grid.cells);
     }
 
+    public Grid() {}
+
     public void apply(Mutation mutation) {
         coordinates().stream().forEach(coordinate -> mutation.apply(this, coordinate));
     }
