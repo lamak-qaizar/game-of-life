@@ -27,15 +27,15 @@ public class GameOfLife {
 
     public void tick() {
 
-        MutatingGrid mutatingCells = new MutatingGrid(grid);
+        MutatingGrid grid = MutatingGrid.from(this.grid);
 
         for (Coordinate coordinate : allCoordinates()) {
             for (Mutation mutation : MUTATIONS) {
-                mutation.mutate(mutatingCells, coordinate);
+                mutation.apply(grid, coordinate);
             }
         }
 
-        this.grid = mutatingCells.mutate();
+        this.grid = grid.mutate();
     }
 
     private List<Coordinate> allCoordinates() {

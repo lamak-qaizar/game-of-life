@@ -10,7 +10,7 @@ public abstract class Mutation {
 
     protected abstract void applyAt(Grid grid, Coordinate coordinate);
 
-    public void mutate(Grid grid, Coordinate coordinate) {
+    public void apply(Grid grid, Coordinate coordinate) {
         if (itAppliesAt(grid, coordinate)) {
             applyAt(grid, coordinate);
         }

@@ -7,9 +7,13 @@ public class MutatingGrid extends Grid {
 
     private Grid mutating;
 
-    public MutatingGrid(Grid grid) {
+    private MutatingGrid(Grid grid) {
         super(grid);
         mutating = new Grid(grid);
+    }
+
+    public static MutatingGrid from(Grid grid) {
+        return new MutatingGrid(grid);
     }
 
     @Override
