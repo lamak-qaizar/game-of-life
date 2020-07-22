@@ -7,7 +7,7 @@ Understanding the 4 Rules of Simple Design by Corey Haines
 ## Constraints applied
 
 - TDD
-- Object Calisthentics
+- Object Calisthenics
 - Cyclomatic complexity (~1)
 
 ## Tool to calculate Cyclomatic Complexity
