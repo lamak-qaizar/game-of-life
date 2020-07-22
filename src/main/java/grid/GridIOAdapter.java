@@ -12,9 +12,4 @@ public class GridIOAdapter extends Grid {
             }
         }
     }
-
-    public void assertState(int[][] cells) {
-        Grid grid = new GridIOAdapter(cells);
-        assert this.equals(grid);
-    }
 }
