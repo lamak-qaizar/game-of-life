@@ -10,6 +10,18 @@ public class Neighbours extends Coordinates {
         super(coordinates);
     }
 
+    public boolean isEmpty() {
+        return this.coordinates.size() == 0;
+    }
+
+    public Coordinate getFirst() {
+        return coordinates.get(0);
+    }
+
+    public Neighbours excludeFirst() {
+        return new Neighbours(coordinates.subList(1, coordinates.size()));
+    }
+
     private static final List<Offset> NEIGHBOUR_OFFSETS = Arrays.asList(
             new Offset(-1, -1),
             new Offset(-1, 0),

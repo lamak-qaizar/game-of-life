@@ -1,6 +1,7 @@
 package grid;
 
 import cell.Cell;
+import coordinate.Neighbours;
 import coordinate.Offset;
 import coordinate.Coordinate;
 import java.util.Arrays;
@@ -58,24 +59,17 @@ public class Grid {
     }
 
     public int countMatching(Coordinate coordinate, Cell cell) {
-        List<Coordinate> neighbours = getNeighbours(coordinate);
-        return countMatching(cell, neighbours);
+        return countMatching(cell, Neighbours.from(coordinate));
     }
 
-    private List<Coordinate> getNeighbours(Coordinate coordinate) {
-        return NEIGHBOUR_OFFSETS.stream()
-                .map(offset -> offset.applyTo(coordinate)).collect(
-                        Collectors.toList());
-    }
-
-    private int countMatching(Cell cell, List<Coordinate> neighbours) {
-        if (neighbours.size() == 0) {
+    private int countMatching(Cell cell, Neighbours neighbours) {
+        if (neighbours.isEmpty()) {
             return 0;
         }
 
-        Coordinate neighbour = neighbours.get(0);
+        Coordinate neighbour = neighbours.getFirst();
         return (at(neighbour).equals(cell) ? 1 : 0)
-                + countMatching(cell, neighbours.subList(1, neighbours.size()));
+                + countMatching(cell, neighbours.excludeFirst());
     }
 
 
