@@ -23,18 +23,13 @@ public class GameOfLife {
 
     public void tick() {
         MutatingGrid grid = MutatingGrid.from(this.grid);
-
-        Coordinates coordinates = Coordinates.from(grid.rows(), grid.columns());
-        applyMutations(grid, coordinates);
-
+        applyMutations(grid);
         this.grid = grid.mutate();
     }
 
-    private void applyMutations(MutatingGrid grid, Coordinates coordinates) {
+    private void applyMutations(MutatingGrid grid) {
         for (Mutation mutation : MUTATIONS) {
-            coordinates.stream().forEach(
-                    coordinate -> mutation.apply(grid, coordinate)
-            );
+            grid.apply(mutation);
         }
     }
 
