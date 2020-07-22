@@ -8,7 +8,13 @@ Understanding the 4 Rules of Simple Design by Corey Haines
 
 - TDD
 - Object Calisthentics
-- Polymorphism (Subclassing, Strategy, Null-Object Pattern)
+- Cyclomatic complexity (~1)
+
+## Tool to calculate Cyclomatic Complexity
+
+https://plugins.jetbrains.com/plugin/93-metricsreloaded
+
+Current complexity: 1.02 _(1 IF check exists in Cell creation method)_
 
 ## Commit notation
 
