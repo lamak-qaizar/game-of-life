@@ -7,7 +7,7 @@ public class Overpopulation extends Mutation {
 
     @Override
     protected boolean mutable(Grid grid, Coordinate coordinate) {
-        return livingNeighboursAround(grid, coordinate) > 3;
+        return livingNeighboursAround2(grid, coordinate).greaterThan(3);
     }
 
     @Override

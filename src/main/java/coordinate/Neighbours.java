@@ -50,4 +50,8 @@ public class Neighbours extends Coordinates {
     public int count() {
         return coordinates.size();
     }
+
+    public boolean greaterThan(int value) {
+        return coordinates.size() > value;
+    }
 }

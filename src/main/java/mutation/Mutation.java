@@ -1,6 +1,7 @@
 package mutation;
 
 import cell.Cell;
+import coordinate.Neighbours;
 import grid.Grid;
 import coordinate.Coordinate;
 
@@ -18,6 +19,10 @@ public abstract class Mutation {
 
     protected int livingNeighboursAround(Grid grid, Coordinate coordinate) {
         return grid.neighboursMatching(coordinate, Cell.ALIVE).count();
+    }
+
+    protected Neighbours livingNeighboursAround2(Grid grid, Coordinate coordinate) {
+        return grid.neighboursMatching(coordinate, Cell.ALIVE);
     }
 
     protected void kill(Grid grid, Coordinate coordinate) {
