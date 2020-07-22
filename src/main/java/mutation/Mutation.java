@@ -17,10 +17,6 @@ public abstract class Mutation {
                 .forEach(c -> mutate(grid, c));
     }
 
-    protected int livingNeighboursAround(Grid grid, Coordinate coordinate) {
-        return grid.neighboursMatching(coordinate, Cell.ALIVE).count();
-    }
-
     protected Neighbours livingNeighboursAround2(Grid grid, Coordinate coordinate) {
         return grid.neighboursMatching(coordinate, Cell.ALIVE);
     }
