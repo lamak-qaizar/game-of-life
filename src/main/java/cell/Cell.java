@@ -23,23 +23,4 @@ public abstract class Cell {
     public static Cell create(int value) {
         return value == 0? new DeadCell(): ALIVE;
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        Cell cell = (Cell) o;
-
-        return value == cell.value;
-    }
-
-    @Override
-    public int hashCode() {
-        return value;
-    }
 }
