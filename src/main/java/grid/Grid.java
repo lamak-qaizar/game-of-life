@@ -41,11 +41,11 @@ public class Grid {
         this.columns = grid.columns;
     }
 
-    public int getRows() {
+    public int rows() {
         return rows;
     }
 
-    public int getColumns() {
+    public int columns() {
         return this.columns;
     }
 

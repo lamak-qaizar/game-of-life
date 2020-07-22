@@ -1,13 +1,8 @@
-import coordinate.Coordinate;
 import coordinate.Coordinates;
 import grid.Grid;
 import grid.MutatingGrid;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
 import mutation.Mutation;
 import mutation.Overpopulation;
 import mutation.Revival;
@@ -30,7 +25,7 @@ public class GameOfLife {
 
         MutatingGrid grid = MutatingGrid.from(this.grid);
 
-        Coordinates.from(grid.getRows(), grid.getColumns()).stream().forEach(
+        Coordinates.from(grid.rows(), grid.columns()).stream().forEach(
                 coordinate -> {
                     for (Mutation mutation : MUTATIONS) {
                         mutation.apply(grid, coordinate);
