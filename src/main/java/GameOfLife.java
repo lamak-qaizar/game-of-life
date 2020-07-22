@@ -22,16 +22,20 @@ public class GameOfLife {
             new Revival());
 
     public void tick() {
-
         MutatingGrid grid = MutatingGrid.from(this.grid);
 
+        Coordinates coordinates = Coordinates.from(grid.rows(), grid.columns());
+        applyMutations(grid, coordinates);
+
+        this.grid = grid.mutate();
+    }
+
+    private void applyMutations(MutatingGrid grid, Coordinates coordinates) {
         for (Mutation mutation : MUTATIONS) {
-            Coordinates.from(grid.rows(), grid.columns()).stream().forEach(
+            coordinates.stream().forEach(
                     coordinate -> mutation.apply(grid, coordinate)
             );
         }
-
-        this.grid = grid.mutate();
     }
 
     public void assertState(int[][] cells) {
