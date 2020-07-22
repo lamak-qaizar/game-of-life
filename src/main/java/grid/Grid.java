@@ -34,6 +34,11 @@ public class Grid {
         return matchNeighbours(cell, Neighbours.from(coordinate));
     }
 
+    public Neighbours neighboursMatching(Coordinate coordinate, Cell cell) {
+        return Neighbours.from(coordinate)
+                .filter(neighbour -> at(neighbour).equals(cell));
+    }
+
     private int matchNeighbours(Cell cell, Neighbours neighbours) {
         if (neighbours.isEmpty()) {
             return 0;

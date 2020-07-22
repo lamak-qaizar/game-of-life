@@ -2,6 +2,7 @@ package coordinate;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class Neighbours extends Coordinates {
@@ -37,5 +38,12 @@ public class Neighbours extends Coordinates {
                 .map(offset -> offset.applyTo(coordinate))
                 .collect(Collectors.toList());
         return new Neighbours(neighbours);
+    }
+
+    public Neighbours filter(Predicate<Coordinate> predicate) {
+        List<Coordinate> coordinates = this.stream()
+                .filter(predicate)
+                .collect(Collectors.toList());
+        return new Neighbours(coordinates);
     }
 }
