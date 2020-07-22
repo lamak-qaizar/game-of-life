@@ -21,10 +21,7 @@ public abstract class Cell {
     }
 
     public static Cell create(int value) {
-        if (value == 0) {
-            return new DeadCell();
-        }
-        return new LivingCell();
+        return value == 0? new DeadCell(): ALIVE;
     }
 
     @Override
