@@ -6,14 +6,14 @@ import coordinate.Coordinate;
 
 public abstract class Mutation {
 
-    protected abstract boolean itAppliesAt(Grid grid, Coordinate coordinate);
+    protected abstract boolean mutable(Grid grid, Coordinate coordinate);
 
-    protected abstract void applyAt(Grid grid, Coordinate coordinate);
+    protected abstract void mutate(Grid grid, Coordinate coordinate);
 
     public void apply(Grid grid) {
         grid.coordinates().stream()
-                .filter(c -> itAppliesAt(grid, c))
-                .forEach(c -> applyAt(grid, c));
+                .filter(c -> mutable(grid, c))
+                .forEach(c -> mutate(grid, c));
     }
 
     protected int livingNeighboursAround(Grid grid, Coordinate coordinate) {
