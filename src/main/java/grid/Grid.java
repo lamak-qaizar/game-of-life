@@ -10,12 +10,8 @@ import mutation.Mutation;
 public class Grid {
 
     private final Map<Coordinate, Cell> cells = new HashMap<>();
-    private final int rows;
-    private final int columns;
 
     public Grid(int[][] cells) {
-        rows = cells.length;
-        columns = cells[0].length;
         for (int row = 0; row < cells.length; row++) {
             for (int column = 0; column < cells[row].length; column++) {
                 this.cells.put(new Coordinate(row, column), Cell.create(cells[row][column]));
@@ -25,20 +21,10 @@ public class Grid {
 
     protected Grid(Grid grid) {
         this.cells.putAll(grid.cells);
-        this.rows = grid.rows;
-        this.columns = grid.columns;
     }
 
     public void apply(Mutation mutation) {
         cells.keySet().stream().forEach(coordinate -> mutation.apply(this, coordinate));
-    }
-
-    public int rows() {
-        return rows;
-    }
-
-    public int columns() {
-        return this.columns;
     }
 
     private Cell at(Coordinate coordinate) {
