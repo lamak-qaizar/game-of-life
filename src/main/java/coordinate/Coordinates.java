@@ -11,7 +11,7 @@ public class Coordinates {
 
     List<Coordinate> coordinates = new ArrayList<>();
 
-    private Coordinates(List<Coordinate> coordinates) {
+    protected Coordinates(List<Coordinate> coordinates) {
         this.coordinates = coordinates;
     }
 
