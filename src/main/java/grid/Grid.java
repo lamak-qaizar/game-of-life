@@ -1,30 +1,16 @@
 package grid;
 
 import cell.Cell;
-import coordinate.Neighbours;
-import coordinate.Offset;
 import coordinate.Coordinate;
-import java.util.Arrays;
+import coordinate.Neighbours;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class Grid {
 
     private final Map<Coordinate, Cell> cells = new HashMap<>();
     private final int rows;
     private final int columns;
-
-    private static final List<Offset> NEIGHBOUR_OFFSETS = Arrays.asList(
-            new Offset(-1, -1),
-            new Offset(-1, 0),
-            new Offset(-1, 1),
-            new Offset(0, -1),
-            new Offset(0, 1),
-            new Offset(1, -1),
-            new Offset(1, 0),
-            new Offset(1, 1));
 
     public Grid(int[][] cells) {
         rows = cells.length;
