@@ -2,13 +2,12 @@ package grid;
 
 import cell.Cell;
 import coordinate.Coordinate;
+import java.util.stream.IntStream;
 
 public class GridInputAdapter extends Grid {
 
     public GridInputAdapter(int[][] cells) {
-        for (int row = 0; row < cells.length; row++) {
-            createRow(cells[row], row);
-        }
+        IntStream.range(0, cells.length).forEach(i -> createRow(cells[i], i));
     }
 
     private void createRow(int[] cells, int row) {
