@@ -13,6 +13,6 @@ public abstract class Cell {
     }
 
     public static Cell create(int value) {
-        return value == 0? new DeadCell(): ALIVE;
+        return value == 0? DEAD: ALIVE;
     }
 }
