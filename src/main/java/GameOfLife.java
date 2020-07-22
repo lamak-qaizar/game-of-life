@@ -1,6 +1,6 @@
 import grid.Grid;
 import grid.GridInputAdapter;
-import grid.MutatingGrid;
+import grid.NextGenerationGrid;
 import java.util.Arrays;
 import java.util.List;
 import mutation.Mutation;
@@ -22,9 +22,9 @@ public class GameOfLife {
             new Revival());
 
     public void tick() {
-        MutatingGrid grid = MutatingGrid.from(this.grid);
+        NextGenerationGrid grid = NextGenerationGrid.from(this.grid);
         applyMutationsTo(grid);
-        this.grid = grid.mutate();
+        this.grid = grid.nextGeneration();
     }
 
     private void applyMutationsTo(Grid grid) {
