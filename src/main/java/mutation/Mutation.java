@@ -17,7 +17,7 @@ public abstract class Mutation {
     }
 
     protected int livingNeighboursAround(Grid grid, Coordinate coordinate) {
-        return grid.matchNeighbours(coordinate, Cell.ALIVE);
+        return grid.neighboursMatching(coordinate, Cell.ALIVE).count();
     }
 
     protected void kill(Grid grid, Coordinate coordinate) {

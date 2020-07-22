@@ -46,4 +46,8 @@ public class Neighbours extends Coordinates {
                 .collect(Collectors.toList());
         return new Neighbours(coordinates);
     }
+
+    public int count() {
+        return coordinates.size();
+    }
 }
