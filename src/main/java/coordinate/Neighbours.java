@@ -34,8 +34,8 @@ public class Neighbours extends Coordinates {
 
     public static Neighbours from(Coordinate coordinate) {
         List<Coordinate> neighbours = NEIGHBOUR_OFFSETS.stream()
-                .map(offset -> offset.applyTo(coordinate)).collect(
-                        Collectors.toList());
+                .map(offset -> offset.applyTo(coordinate))
+                .collect(Collectors.toList());
         return new Neighbours(neighbours);
     }
 }
