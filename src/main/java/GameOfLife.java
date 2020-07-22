@@ -1,5 +1,5 @@
 import grid.Grid;
-import grid.GridIOAdapter;
+import grid.GridInputAdapter;
 import grid.MutatingGrid;
 import java.util.Arrays;
 import java.util.List;
@@ -13,7 +13,7 @@ public class GameOfLife {
     private Grid grid;
 
     public GameOfLife(int cells[][]) {
-        this.grid = new GridIOAdapter(cells);
+        this.grid = new GridInputAdapter(cells);
     }
 
     private static final List<Mutation> MUTATIONS = Arrays.asList(
@@ -32,6 +32,6 @@ public class GameOfLife {
     }
 
     public void assertState(int[][] cells) {
-        new GridIOAdapter(cells).equals(grid);
+        new GridInputAdapter(cells).equals(grid);
     }
 }
