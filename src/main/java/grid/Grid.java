@@ -30,22 +30,9 @@ public class Grid {
         cells.put(coordinate, cell);
     }
 
-    public int matchNeighbours(Coordinate coordinate, Cell cell) {
-        return matchNeighbours(cell, Neighbours.from(coordinate));
-    }
-
     public Neighbours neighboursMatching(Coordinate coordinate, Cell cell) {
         return Neighbours.from(coordinate)
                 .filter(neighbour -> at(neighbour).equals(cell));
     }
 
-    private int matchNeighbours(Cell cell, Neighbours neighbours) {
-        if (neighbours.isEmpty()) {
-            return 0;
-        }
-
-        Coordinate neighbour = neighbours.getFirst();
-        return (at(neighbour).equals(cell) ? 1 : 0)
-                + matchNeighbours(cell, neighbours.excludeFirst());
-    }
 }
