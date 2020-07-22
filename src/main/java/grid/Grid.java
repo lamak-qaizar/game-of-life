@@ -2,6 +2,7 @@ package grid;
 
 import cell.Cell;
 import coordinate.Coordinate;
+import coordinate.Coordinates;
 import coordinate.Neighbours;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,7 +25,11 @@ public class Grid {
     }
 
     public void apply(Mutation mutation) {
-        cells.keySet().stream().forEach(coordinate -> mutation.apply(this, coordinate));
+        coordinates().stream().forEach(coordinate -> mutation.apply(this, coordinate));
+    }
+
+    private Coordinates coordinates() {
+        return new Coordinates(cells.keySet());
     }
 
     private Cell at(Coordinate coordinate) {
