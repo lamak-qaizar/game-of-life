@@ -1,4 +1,3 @@
-import coordinate.Coordinates;
 import grid.Grid;
 import grid.MutatingGrid;
 import java.util.Arrays;
@@ -23,14 +22,12 @@ public class GameOfLife {
 
     public void tick() {
         MutatingGrid grid = MutatingGrid.from(this.grid);
-        applyMutations(grid);
+        applyMutationsTo(grid);
         this.grid = grid.mutate();
     }
 
-    private void applyMutations(MutatingGrid grid) {
-        for (Mutation mutation : MUTATIONS) {
-            grid.apply(mutation);
-        }
+    private void applyMutationsTo(Grid grid) {
+        MUTATIONS.stream().forEach(grid::apply);
     }
 
     public void assertState(int[][] cells) {
