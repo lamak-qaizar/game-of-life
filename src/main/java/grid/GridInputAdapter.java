@@ -7,12 +7,11 @@ import java.util.stream.IntStream;
 public class GridInputAdapter extends Grid {
 
     public GridInputAdapter(int[][] cells) {
-        IntStream.range(0, cells.length).forEach(i -> createRow(cells[i], i));
+        IntStream.range(0, cells.length).forEach(row -> createRow(cells[row], row));
     }
 
-    private void createRow(int[] cells, int row) {
-        for (int column = 0; column < cells.length; column++) {
-            set(new Coordinate(row, column), Cell.create(cells[column]));
-        }
+    private void createRow(int[] cellsInRow, int row) {
+        IntStream.range(0, cellsInRow.length)
+                .forEach(column -> set(new Coordinate(row, column), Cell.create(cellsInRow[column])));
     }
 }
