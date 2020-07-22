@@ -1,5 +1,6 @@
-import grid.Grid;
 import coordinate.Coordinate;
+import coordinate.Coordinates;
+import grid.Grid;
 import grid.MutatingGrid;
 import java.util.Arrays;
 import java.util.List;
@@ -29,28 +30,15 @@ public class GameOfLife {
 
         MutatingGrid grid = MutatingGrid.from(this.grid);
 
-        for (Coordinate coordinate : allCoordinates()) {
-            for (Mutation mutation : MUTATIONS) {
-                mutation.apply(grid, coordinate);
-            }
-        }
+        Coordinates.from(grid.getRows(), grid.getColumns()).stream().forEach(
+                coordinate -> {
+                    for (Mutation mutation : MUTATIONS) {
+                        mutation.apply(grid, coordinate);
+                    }
+                }
+        );
 
         this.grid = grid.mutate();
-    }
-
-    private List<Coordinate> allCoordinates() {
-        return IntStream
-                .range(0, grid.getRows())
-                .mapToObj(this::getCoordinatesInRow)
-                .flatMap(Function.identity())
-                .collect(Collectors.toList());
-
-    }
-
-    private Stream<Coordinate> getCoordinatesInRow(int row) {
-        return IntStream
-                .range(0, grid.getColumns())
-                .mapToObj(column -> new Coordinate(row, column));
     }
 
     public void assertState(int[][] cells) {
