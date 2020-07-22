@@ -10,11 +10,11 @@ public class Coordinate {
         this.column = column;
     }
 
-    public int getRow() {
+    protected int row() {
         return row;
     }
 
-    public int getColumn() {
+    protected int column() {
         return column;
     }
 }

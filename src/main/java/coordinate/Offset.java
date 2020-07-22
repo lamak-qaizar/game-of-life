@@ -1,7 +1,5 @@
 package coordinate;
 
-import coordinate.Coordinate;
-
 public class Offset extends Coordinate {
 
     public Offset(int x, int y) {
@@ -9,7 +7,7 @@ public class Offset extends Coordinate {
     }
 
     public Coordinate applyTo(Coordinate coordinate) {
-        return new Coordinate(coordinate.getRow() + this.getRow(),
-                coordinate.getColumn() + this.getColumn());
+        return new Coordinate(coordinate.row() + this.row(),
+                coordinate.column() + this.column());
     }
 }
