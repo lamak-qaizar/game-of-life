@@ -1,10 +1,8 @@
 # Conway's Game of Life
 
-This kata has been attempted as a pre-req to reading:
+This kata has been attempted as a pre-req to reading **Understanding the 4 Rules of Simple Design** _by Corey Haines_.
 
-Understanding the 4 Rules of Simple Design by Corey Haines
-
-## Constraints applied
+## Constraints
 
 - TDD
 - Object Calisthenics
