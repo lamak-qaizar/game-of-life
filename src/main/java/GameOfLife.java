@@ -25,13 +25,11 @@ public class GameOfLife {
 
         MutatingGrid grid = MutatingGrid.from(this.grid);
 
-        Coordinates.from(grid.rows(), grid.columns()).stream().forEach(
-                coordinate -> {
-                    for (Mutation mutation : MUTATIONS) {
-                        mutation.apply(grid, coordinate);
-                    }
-                }
-        );
+        for (Mutation mutation : MUTATIONS) {
+            Coordinates.from(grid.rows(), grid.columns()).stream().forEach(
+                    coordinate -> mutation.apply(grid, coordinate)
+            );
+        }
 
         this.grid = grid.mutate();
     }
